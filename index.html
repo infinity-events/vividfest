@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VividFest</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
 </head>
 <body>
     <header>
@@ -27,8 +28,17 @@
     </header>
 
     <section id="festival">
-        <h2>Festival</h2>
-        <p>Benvenuti al VividFest, il festival musicale più atteso dell'estate! Unisciti a noi per due giorni di musica incredibile, performance dal vivo e tanto divertimento. Il nostro festival offre una vasta gamma di artisti di talento, dai DJ più famosi ai cantanti emergenti, per garantire un'esperienza unica e indimenticabile. Situato in una location suggestiva, il VividFest è il luogo perfetto per divertirsi con gli amici, ballare tutta la notte e vivere la magia dell'estate. Non perdere l'occasione di essere parte di questo evento straordinario!</p>
+        <div class="frase-inizio">
+            <div class="text">
+                <p>VividFest è&nbsp</p>
+                <p>
+                  <span class="word wisteria">unico.</span>
+                  <span class="word belize">coinvolgente.</span>
+                  <span class="word green">fantastico.</span>
+                </p>
+            </div>
+        </div>
+        <p class="entry">Benvenuti al VividFest, il festival musicale più atteso dell'estate! Unisciti a noi per due giorni di musica incredibile, performance dal vivo e tanto divertimento. Il nostro festival offre una vasta gamma di artisti di talento, dai DJ più famosi ai cantanti emergenti, per garantire un'esperienza unica e indimenticabile. Situato in una location suggestiva, il VividFest è il luogo perfetto per divertirsi con gli amici, ballare tutta la notte e vivere la magia dell'estate. Non perdere l'occasione di essere parte di questo evento straordinario!</p>
     </section>
 
     <section id="orari">
@@ -112,38 +122,75 @@
     <section id="faqs">
         <h2>FAQs</h2>
         <div class="faq-item">
-            <div class="faq-question">Quali sono le date del festival? <span>&#9660;</span></div>
+            <div class="faq-question">Quali sono le date del festival? <span><img src="img/freccia.png" alt=""></span></div>
             <div class="faq-answer">Il festival si terrà il 21 e 22 Giugno 2025.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Dove si svolgerà il festival? <span>&#9660;</span></div>
+            <div class="faq-question">Dove si svolgerà il festival? <span><img src="img/freccia.png" alt=""></span></div>
             <div class="faq-answer">Il festival si svolgerà a Piazzale Gerani, Matelica (MC), Marche.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Si può portare cibo? <span>&#9660;</span></div>
+            <div class="faq-question">Si può portare cibo? <span><img src="img/freccia.png" alt=""></span></div>
             <div class="faq-answer">No, nei dintorni del Festival saranno allestiti degli stand con cibo e bevande.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">C'è un regolamento? <span>&#9660;</span></div>
+            <div class="faq-question">C'è un regolamento? <span><img src="img/freccia.png" alt=""></span></div>
             <div class="faq-answer">Sì, potete leggere il regolamento completo sul nostro account Instagram <a href="https://www.instagram.com/vividfest_it/">@vividfest_it.</a></div>
         </div>
     </section>
     
+    <section id="sponsor">
+        <h2>Sponsor e Partner</h2>
+        <div class="sponsor-category">
+            <h3>Main Sponsor</h3>
+            <div class="sponsor-logos">
+                <img src="img/main-sponsor1.png" alt="Main Sponsor 1" class="white-logo">
+                <img src="img/main-sponsor2.png" alt="Main Sponsor 2" class="white-logo">
+                <!-- Altri loghi dei main sponsor -->
+            </div>
+        </div>
+
+        <div class="sponsor-category">
+            <h3>Premium Sponsor</h3>
+            <div class="sponsor-logos">
+                <img src="img/premium-sponsor1.png" alt="Premium Sponsor 1" class="white-logo">
+                <img src="img/premium-sponsor2.png" alt="Premium Sponsor 2" class="white-logo">
+                <!-- Altri loghi dei premium sponsor -->
+            </div>
+        </div>
+
+        <div class="sponsor-category">
+            <h3>Partner</h3>
+            <div class="sponsor-logos">
+                <img src="img/promatelica.png" alt="Partner 1" class="white-logo">
+                <img src="img/Logo-S.Rocco.png" alt="Partner 2" class="white-logo">
+                <!-- Altri loghi dei partner -->
+            </div>
+        </div>
+
+        <div class="sponsor-category">
+            <h3>Sponsor</h3>
+            <div class="sponsor-logos">
+                <img src="img/sponsor1.png" alt="Sponsor 1" class="white-logo">
+                <img src="img/sponsor2.png" alt="Sponsor 2" class="white-logo">
+                <!-- Altri loghi degli sponsor -->
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
                 <h1>VividFest</h1>
                 <p>Unisciti a noi per il festival musicale più atteso dell'estate! Non perdere l'occasione di vivere un'esperienza unica e indimenticabile.</p>
             </div>
-            <nav class="footer-section links">
-                <h2>Link Utili</h2>
-                <ul>
-                    <li><a href="#festival">Festival</a></li>
-                    <li><a href="#orari">Orari</a></li>
-                    <li><a href="#dove-siamo">Dove Siamo</a></li>
-                    <li><a href="#faqs">FAQs</a></li>
-                </ul>
-            </nav>
+            <div class="footer-section social">
+                <h2>Seguici sui Social</h2>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/vividfest_it" target="_blank" class="icon instagram"></a>
+                    <a href="mailto:infinityeventsit@gmail.com" class="icon email"></a>
+                </div>
+            </div>
             <div class="footer-section contact">
                 <h2>Contatti</h2>
                 <p>Email: <a href="mailto:infinityeventsit@gmail.com">infinityeventsit@gmail.com</a></p>
@@ -155,73 +202,8 @@
             <p>&copy; 2025 VividFest. Tutti i diritti riservati.</p>
         </div>
     </footer>
-
-    <script>
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: 'smooth'
-        });
-
-        // Close the menu on mobile after clicking a link
-        if (window.innerWidth <= 768) {
-            document.getElementById('menu').style.display = 'none';
-            document.getElementById('menu-icon').classList.remove('change');
-        }
-    });
-});
-
-document.getElementById('menu-icon').addEventListener('click', function() {
-    this.classList.toggle('change');
-    const menu = document.getElementById('menu');
-    if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-    } else {
-        menu.style.display = 'block';
-    }
-    menu.style.animation = 'fadeInOut 0.5s ease-in-out';
-});
-
-// FAQ section toggle
-const faqItems = document.querySelectorAll('.faq-item');
-
-faqItems.forEach(item => {
-    item.querySelector('.faq-question').addEventListener('click', () => {
-        const answer = item.querySelector('.faq-answer');
-        const span = item.querySelector('span');
-
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-            span.style.transform = 'rotate(0deg)';
-        } else {
-            answer.style.display = 'block';
-            span.style.transform = 'rotate(180deg)';
-        }
-    });
-});
-
-// Responsive table for the schedule section
-const table = document.querySelector('table');
-const tableWrapper = document.createElement('div');
-tableWrapper.classList.add('table-wrapper');
-table.parentNode.insertBefore(tableWrapper, table);
-tableWrapper.appendChild(table);
-
-// Adjust FAQ answer display on page load
-document.addEventListener('DOMContentLoaded', () => {
-    faqItems.forEach(item => {
-        const answer = item.querySelector('.faq-answer');
-        answer.style.display = 'none';
-    });
-});
-
-    </script>
     
+<script src="scripts.js"></script>
+
 </body>
 </html>
