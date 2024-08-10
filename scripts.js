@@ -18,6 +18,19 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
 });
 
+const header = document.querySelector("[data-header]");
+
+window.addEventListener('scroll', function() {
+  if (window.innerWidth > 768) { // verifica se è un dispositivo con schermo più largo di 768px
+      if (window.scrollY > 150) {
+          document.querySelector('header').classList.add('active');
+      } else {
+          document.querySelector('header').classList.remove('active');
+      }
+  }
+});
+
+
 document.getElementById('menu-icon').addEventListener('click', function() {
     this.classList.toggle('change');
     const menu = document.getElementById('menu');

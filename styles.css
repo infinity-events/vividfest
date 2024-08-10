@@ -84,6 +84,31 @@ header {
     z-index: 2;
 }
 
+.header.active {
+    position: fixed;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.header.active h1{
+    font-size: 50px;
+    text-align: left;
+    margin-left: 50px;
+    width: 30%;
+    float: left;
+}
+
+.header.active #menu{
+    text-align: right;
+    width: 50%;
+    margin-right: 50px;
+    float: right;
+}
+
+@keyframes slideIn {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+
 header h1 {
     margin: 0;
     font-family: 'Ortland', light;
@@ -360,6 +385,10 @@ tr:hover {
 
     header h1{
         font-size: 50px;
+    }
+
+    .header.active{
+        display: none;
     }
 
     #festival {
