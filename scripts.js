@@ -1,3 +1,4 @@
+// NAVBAR
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -18,6 +19,60 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
 });
 
+//DATE HEADER
+let texts = ["21-22 Giugno 2025", "Piazzale Gerani, Matelica"];
+let currentIndex = 0;
+
+function changeText() {
+    const textElement = document.getElementById("date");
+
+    // Fade out the current text
+    textElement.classList.add("hidden");
+    textElement.classList.add("animate__animated");
+    textElement.classList.add("animate__fadeIn");
+    textElement.classList.add("animate__fadeOut");
+
+    // After 1 second, change the text and fade it back in
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % texts.length;
+        textElement.textContent = texts[currentIndex];
+        textElement.classList.remove("hidden");
+        textElement.classList.remove("animate__fadeOut");
+    }, 1000);
+} 
+
+// Start the text change loop with an initial delay
+setInterval(changeText, 3000);
+
+
+
+//COUNTDOWN
+// Set the date for the festival
+const festivalDate = new Date("June 21, 2025 18:00:00").getTime();
+
+// Update the countdown every second
+const countdownInterval = setInterval(function() {
+  const now = new Date().getTime();
+  const timeLeft = festivalDate - now;
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+  if (timeLeft < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById("countdown").innerHTML = "VividFest is live!";
+  }
+}, 1000);
+
+
+// HEADER
 const header = document.querySelector("[data-header]");
 
 window.addEventListener('scroll', function() {
@@ -63,6 +118,7 @@ faqItems.forEach(item => {
     });
 });
 
+//ENTRY WORDS
 var words = document.getElementsByClassName('word');
 var wordArray = [];
 var currentWord = 0;

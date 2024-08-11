@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129861/favicon-16x16_trezoc.png">
     <link rel="manifest" href="https://res.cloudinary.com/dblhjs3ea/raw/upload/v1723129877/site_qoavwn.webmanifest">
     <link rel="mask-icon" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129873/safari-pinned-tab_lykh4d.svg" color="#5bbad5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129868/mstile-144x144_mpwyfw.png">
     <meta name="theme-color" content="#ffffff">
@@ -20,8 +21,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <header class="header" data-header>
-        <h1>VividFest</h1>
+        <h1><a href="index.html">VividFest</a></h1>
+        <div id="date-location">
+            <span id="date">21-22 Giugno 2025</span>
+        </div>
+        
         <div class="menu-icon" id="menu-icon">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -49,6 +55,15 @@
             </div>
         </div>
         <p class="entry">Benvenuti al VividFest, il festival musicale più atteso dell'estate! Unisciti a noi per due giorni di musica incredibile, performance dal vivo e tanto divertimento. Il nostro festival offre una vasta gamma di artisti di talento, dai DJ più famosi ai cantanti emergenti, per garantire un'esperienza unica e indimenticabile. Situato in una location suggestiva, il VividFest è il luogo perfetto per divertirsi con gli amici, ballare tutta la notte e vivere la magia dell'estate. Non perdere l'occasione di essere parte di questo evento straordinario!</p>
+    </section>
+
+    <section id="countdown">
+        <h2>VividFest starts in:</h2>
+        <div id="time">
+            <span id="days"></span> days 
+            <span id="hours"></span> hours 
+            <span id="minutes"></span> minutes 
+            <span id="seconds"></span> seconds
     </section>
 
     <section id="orari">
