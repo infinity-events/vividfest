@@ -12,16 +12,27 @@ body {
     color: #000;
 }
 
-#countdown{
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    color: #000;
-    padding: 20px;
-    border: 1px solid red;
-    display: none;
+    color: #ff77c0;
 }
 
-#countdown p{
-    border: 1px solid blue;
+.countdown-item {
+    margin: 0 20px;
+}
+
+.countdown-item span {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.countdown-item p {
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-top: 10px;
 }
 
 #time {

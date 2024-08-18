@@ -44,32 +44,34 @@ function changeText() {
 // Start the text change loop with an initial delay
 setInterval(changeText, 3000);
 
-
-
 //COUNTDOWN
-// Set the date for the festival
-const festivalDate = new Date("June 21, 2025 18:00:00").getTime();
+// Set the date of the event
+const eventDate = new Date("June 21, 2025 21:00:00").getTime();
 
-// Update the countdown every second
 const countdownInterval = setInterval(function() {
-  const now = new Date().getTime();
-  const timeLeft = festivalDate - now;
+    const now = new Date().getTime();
+    const timeRemaining = eventDate - now;
 
-  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
+    document.getElementById("days").innerHTML = days.toLocaleString('en-US', {minimumIntegerDigits: 2});
+    document.getElementById("hours").innerHTML = hours.toLocaleString('en-US', {minimumIntegerDigits: 2});
+    document.getElementById("minutes").innerHTML = minutes.toLocaleString('en-US', {minimumIntegerDigits: 2});
+    document.getElementById("seconds").innerHTML = seconds.toLocaleString('en-US', {minimumIntegerDigits: 2});
 
-  if (timeLeft < 0) {
-    clearInterval(countdownInterval);
-    document.getElementById("countdown").innerHTML = "VividFest is live!";
-  }
+    // Stop the countdown when the time is up
+    if (timeRemaining < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+    }
 }, 1000);
+
 
 
 // HEADER
