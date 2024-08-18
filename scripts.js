@@ -87,6 +87,16 @@ window.addEventListener('scroll', function() {
   }
 });
 
+window.addEventListener('scroll', function() {
+  if (window.innerWidth > 768) { // verifica se è un dispositivo con schermo più largo di 768px
+      if (window.scrollY > 150) {
+          document.querySelector('text').style.display = "none";
+      } else {
+          document.querySelector('text').style.display = "block"
+      }
+  }
+});
+
 
 document.getElementById('menu-icon').addEventListener('click', function() {
     this.classList.toggle('change');

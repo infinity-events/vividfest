@@ -66,63 +66,62 @@ body {
 .text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    position: absolute;
     width: 435px;
-    left: 20%;
-    margin-left: -225px;
+    margin-left: -700px;
     height: 40px;
     top: 38%;
-    margin-top: -20px;
+    margin-top: 55px;
     color: #666666;
-  }
+    float: left;
+}
   
-  .text p {
+.text p {
     display: inline-block;
     vertical-align: top;
     margin: 0;
     font-size: 40px;
-  }
+}
   
-  .word {
+.word {
     position: absolute;
     width: 365px;
     opacity: 0;
     text-align: center;
-  }
+}
   
-  .letter {
+.letter {
     display: inline-block;
     position: relative;
     float: left;
     transform: translateZ(25px);
     transform-origin: 50% 50% 25px;
-  }
+}
   
-  .letter.out {
+.letter.out {
     transform: rotateX(90deg);
     transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
+}
   
-  .letter.behind {
+.letter.behind {
     transform: rotateX(-90deg);
-  }
+}
   
-  .letter.in {
+.letter.in {
     transform: rotateX(0deg);
     transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+}
   
-  .wisteria {
+.wisteria {
     color: #FFD05A;
-  }
+}
   
-  .belize {
+.belize {
     color: #FF6A87;
-  }
+}
   
-  .green {
+.green {
     color: #6B66FF;
-  }
+}
 
 header {
     background-image: url("img/BG Colorato@2x.png");
@@ -358,6 +357,11 @@ tr:hover {
 
 
 @media screen and (max-width: 768px) {
+    .countdown{
+        display: none;
+    }
+
+
     table {
         width: 100%;
         display: block;
@@ -377,15 +381,17 @@ tr:hover {
         display: none;
     }
 
-    .text{
-        position: relative;
-        margin-top: 30px;
-        width: 160px;
-        height: 40px;
-        color: #666666;
-        margin-left: 5%;
-        text-align: center;
+    .frase-inizio{
+        align-items: center;
+        margin-left: 0;
+    }
 
+    .text{
+        width: 100%;
+        color: #666666;
+        margin-left: 0;
+        text-align: center;
+        float: none;
     }
 
     .text p{
