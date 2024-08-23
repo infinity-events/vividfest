@@ -15,6 +15,9 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
         if (window.innerWidth <= 768) {
             document.getElementById('menu').style.display = 'none';
             document.getElementById('menu-icon').classList.remove('change');
+            document.getElementById('bar1').classList.remove('change');
+            document.getElementById('bar2').classList.remove('change');
+            document.getElementById('bar3').classList.remove('change');
         }
     });
 });
