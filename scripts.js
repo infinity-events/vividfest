@@ -101,6 +101,12 @@ window.addEventListener('scroll', function() {
 document.getElementById('menu-icon').addEventListener('click', function() {
     this.classList.toggle('change');
     const menu = document.getElementById('menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    bar1.classList.toggle('change');
+    bar2.classList.toggle('change');
+    bar3.classList.toggle('change');
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
     } else {

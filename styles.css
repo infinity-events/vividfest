@@ -187,8 +187,22 @@ nav {
     height: 3px;
     background-color: #FFFFFF;
     margin: 5px 0;
-    transition: 0.4s;
     border-radius: 20px;
+    transform: translate(-50%, -50%);
+    transition: transform .6s, opacity .8s, top .6s;
+}
+
+.bar1.change{
+    transform: translate(-50%, -50%) rotate(45deg);
+    margin-top: 12px;
+    top: 50px;
+}
+.bar2.change{
+    opacity: 0;
+}
+.bar3.change{
+    transform: translate(-50%, -50%) rotate(-45deg);
+    margin-top: -16px;
 }
 
 nav ul {
