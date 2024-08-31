@@ -19,6 +19,8 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>     
 </head>
 <body>
 
@@ -35,7 +37,7 @@
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="#festival">Festival</a></li>
+                <!-- <li><a href="#festival">Festival</a></li> -->
                 <li><a href="#orari">Orari</a></li>
                 <li><a href="#dove-siamo">Dove Siamo</a></li>
                 <li><a href="#faqs">FAQs</a></li>
@@ -43,7 +45,7 @@
         </nav>
     </header>
 
-    <section id="festival">
+    <!-- <section id="festival">
         <div class="frase-inizio">
             <div class="text">
                 <p>VividFest è&nbsp</p>
@@ -54,8 +56,22 @@
                 </p>
             </div>
         </div>
-        <p class="entry">Benvenuti al VividFest, il festival musicale più atteso dell'estate! Unisciti a noi per due giorni di musica incredibile, performance dal vivo e tanto divertimento. Il nostro festival offre una vasta gamma di artisti di talento, dai DJ più famosi ai cantanti emergenti, per garantire un'esperienza unica e indimenticabile. Situato in una location suggestiva, il VividFest è il luogo perfetto per divertirsi con gli amici, ballare tutta la notte e vivere la magia dell'estate. Non perdere l'occasione di essere parte di questo evento straordinario!</p>
+    </section> -->
+
+    <section id="hero" class="hero">
+        <div class="content">
+            <h1 class="title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
+            <div class="discover"><a href="#orari">Scopri gli orari</a></div>
+        </div>
     </section>
+    
+    <div class="marquee">
+        <div class="marquee__inner">
+            <!-- Testo ripetuto per creare l'effetto continuo -->
+            <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+            <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+        </div>
+    </div>
 
     <section id="countdown" class="countdown">
             <div class="countdown-item">
@@ -229,7 +245,8 @@
             <p>&copy; 2025 VividFest. Tutti i diritti riservati.</p>
         </div>
     </footer>
-    
+
+
 <script src="scripts.js"></script>
 
 </body>

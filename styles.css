@@ -1,4 +1,5 @@
 @font-face { font-family: Ortland; src: url('https://res.cloudinary.com/dblhjs3ea/raw/upload/v1723124824/Ortland_a7b4di.otf'); }
+@font-face { font-family: Ortland-Outline; src: url('https://res.cloudinary.com/dblhjs3ea/raw/upload/v1725113790/Ortland-Outline_ryizq9.otf'); }
 /*@font-face { font-family: Montserrat-Regular; src: url('/fonts/Montserrat-Regular.ttf'); }
 @font-face { font-family: Montserrat-SemiBold; src: url('/fonts/Montserrat-SemiBold.ttf'); }
 @font-face { font-family: Montserrat-ExtraBold; src: url('/fonts/Montserrat-ExtraBold.ttf'); }*/
@@ -10,6 +11,87 @@ body {
     padding: 0;
     background-color: #FAF3F0;
     color: #000;
+    overflow-x: hidden;
+}
+
+.hero{
+    position: relative;
+    /* border: 1px solid green; */
+    height: 635px;
+    background-image: url("img/BG Colorato@2x.png");
+    background-position: center;
+    top: 0;
+}
+
+.title-hero{
+    color: #fff;
+    text-align: center;
+    font-size: 70px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    height: 140px;
+    margin: 0;
+}
+
+.discover{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+.discover a{
+    padding: 15px 150px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: #ff77c0;
+    border: 0.5px solid #fff;
+    border-radius: 18px;
+    transition: all .2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.discover a:hover{
+    background-color: #fff;
+    color: #ff77c0;
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        background-position: top;
+    }
+
+    .title-hero{
+        padding-top: 50px;
+    }
+
+    .discover a{
+        padding: 15px 70px;
+        border-radius: 20px;
+    }
+}
+
+.marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 20px;
+    cursor: default;
+    user-select: none;
+}
+
+.marquee__inner {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.marquee__text {
+    display: inline-block;
+    font-family: 'Ortland-Outline', sans-serif;
+    font-size: 80px;
+    color: #000;
+    padding-right: 2rem;
 }
 
 .countdown {
@@ -35,6 +117,8 @@ body {
     margin-top: 10px;
 }
 
+
+
 #time {
     font-size: 20px;
     margin-top: 10px;
@@ -56,14 +140,8 @@ body {
     transition: 1s ease-out;
 }
 
-.header.active #date-location{
-    float: left;
-    display: block;
-    margin-top: 15px;
-}
 
-
-.text {
+/* .text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     width: 435px;
@@ -121,7 +199,7 @@ body {
   
 .green {
     color: #6B66FF;
-}
+} */
 
 header {
     background-image: url("img/BG Colorato@2x.png");
@@ -132,6 +210,7 @@ header {
     position: relative;
     width: 100%;
     z-index: 2;
+    top: 0;
 }
 
 header a{
@@ -157,6 +236,12 @@ header a{
     width: 50%;
     margin-right: 50px;
     float: right;
+}
+
+.header.active #date-location{
+    float: left;
+    display: block;
+    margin-top: 15px;
 }
 
 @keyframes slideIn {
@@ -223,6 +308,7 @@ nav ul li a {
     padding: 5px 10px;
     z-index: 1;
     transition: all 0.3s;
+    border-radius: 10px;
 }
 
 nav ul li a:hover {
@@ -256,10 +342,11 @@ h2 {
 .faq-item {
     background-color: white;
     border: 1px solid var(--accent-color);
-    border-radius: 10px;
+    border-radius: 15px;
     margin-bottom: 1rem;
     overflow: hidden;
     transition: all 0.5s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .faq-item img{
@@ -371,10 +458,15 @@ tr:hover {
 
 
 @media screen and (max-width: 768px) {
+    .title-hero{
+        margin-top: 60px;
+        font-size: 40px;
+        
+    }
+
     .countdown{
         display: none;
     }
-
 
     table {
         width: 100%;
@@ -395,7 +487,7 @@ tr:hover {
         display: none;
     }
 
-    .frase-inizio{
+    /* .frase-inizio{
         align-items: center;
         margin-left: 0;
     }
@@ -420,7 +512,7 @@ tr:hover {
         text-align: right;
         font-size: 25px;
 
-    }
+    } */
 
 
     #festival{

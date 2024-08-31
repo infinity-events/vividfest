@@ -47,6 +47,22 @@ function changeText() {
 // Start the text change loop with an initial delay
 setInterval(changeText, 3000);
 
+//HERO
+document.querySelectorAll('a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        window.scrollTo({
+            top: targetSection.offsetTop,
+            behavior: 'smooth'
+        });
+    });
+});
+
+
 //COUNTDOWN
 // Set the date of the event
 const eventDate = new Date("June 21, 2025 21:00:00").getTime();
@@ -140,60 +156,60 @@ faqItems.forEach(item => {
 });
 
 //ENTRY WORDS
-var words = document.getElementsByClassName('word');
-var wordArray = [];
-var currentWord = 0;
+// var words = document.getElementsByClassName('word');
+// var wordArray = [];
+// var currentWord = 0;
 
-words[currentWord].style.opacity = 1;
-for (var i = 0; i < words.length; i++) {
-  splitLetters(words[i]);
-}
+// words[currentWord].style.opacity = 1;
+// for (var i = 0; i < words.length; i++) {
+//   splitLetters(words[i]);
+// }
 
-function changeWord() {
-  var cw = wordArray[currentWord];
-  var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
-  for (var i = 0; i < cw.length; i++) {
-    animateLetterOut(cw, i);
-  }
+// function changeWord() {
+//   var cw = wordArray[currentWord];
+//   var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
+//   for (var i = 0; i < cw.length; i++) {
+//     animateLetterOut(cw, i);
+//   }
   
-  for (var i = 0; i < nw.length; i++) {
-    nw[i].className = 'letter behind';
-    nw[0].parentElement.style.opacity = 1;
-    animateLetterIn(nw, i);
-  }
+//   for (var i = 0; i < nw.length; i++) {
+//     nw[i].className = 'letter behind';
+//     nw[0].parentElement.style.opacity = 1;
+//     animateLetterIn(nw, i);
+//   }
   
-  currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
-}
+//   currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
+// }
 
-function animateLetterOut(cw, i) {
-  setTimeout(function() {
-    cw[i].className = 'letter out';
-  }, i*80);
-}
+// function animateLetterOut(cw, i) {
+//   setTimeout(function() {
+//     cw[i].className = 'letter out';
+//   }, i*80);
+// }
 
-function animateLetterIn(nw, i) {
-  setTimeout(function() {
-    nw[i].className = 'letter in';
-  }, 340+(i*80));
-}
+// function animateLetterIn(nw, i) {
+//   setTimeout(function() {
+//     nw[i].className = 'letter in';
+//   }, 340+(i*80));
+// }
 
-function splitLetters(word) {
-  var content = word.innerHTML;
-  word.innerHTML = '';
-  var letters = [];
-  for (var i = 0; i < content.length; i++) {
-    var letter = document.createElement('span');
-    letter.className = 'letter';
-    letter.innerHTML = content.charAt(i);
-    word.appendChild(letter);
-    letters.push(letter);
-  }
+// function splitLetters(word) {
+//   var content = word.innerHTML;
+//   word.innerHTML = '';
+//   var letters = [];
+//   for (var i = 0; i < content.length; i++) {
+//     var letter = document.createElement('span');
+//     letter.className = 'letter';
+//     letter.innerHTML = content.charAt(i);
+//     word.appendChild(letter);
+//     letters.push(letter);
+//   }
   
-  wordArray.push(letters);
-}
+//   wordArray.push(letters);
+// }
 
-changeWord();
-setInterval(changeWord, 4000);
+// changeWord();
+// setInterval(changeWord, 4000);
 
 // Responsive table for the schedule section
 const table = document.querySelector('table');
@@ -210,3 +226,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// use a script tag or an external JS file
+
+// document.addEventListener("DOMContentLoaded", (event) => {
+//     gsap.registerPlugin(ScrollTrigger)
+//     gsap.defaults({ease: "none", duration: 4})
+    
+//     const tl = gsap.timeline();
+//         tl.from(".unico", {yPercent: 3000})
+//         .from(".coinvolgente", {yPercent: 3000})
+//         .from(".fantastico", {yPercent: 3000});
+    
+//         ScrollTrigger.create({
+//             animation: tl,
+//             trigger: ".hero",
+//             start: "top top",
+//             end: () => "+=" + document.querySelector(".hero").offsetWidth,
+//             // markers: true,
+//             scrub: true,
+//             pin: ".hero",
+//             anticipatePin: 1,
+//             toggleActions: "restart pause reverse pause",
+//         })
+    
+//         // gsap.to('.content', {
+//         //     scrollTrigger: {
+//         //         trigger: ".hero",
+//         //         start: "top top",
+//         //         markers: true,
+//         //         scrub: true,
+//         //         pin: ".title-hero",
+//         //         toggleActions: "restart pause reverse pause",
+//         //     },
+//         //     x: 400,
+//         //     rotation: 360,
+//         //     duration: 3,
+//         //     });
+// });
+
+//MARQUEE
+
+let veloce = gsap.to(".marquee__inner", {
+    duration: 200, // Durata dell'animazione per un ciclo completo
+    xPercent: -100, // Movimento verso sinistra fino al 100% della sua larghezza
+    repeat: -1, // Loop infinito
+    ease: "linear", // Animazione lineare senza rallentamento
+    markers: true,
+})
+
+let rallentato = gsap.to(".marquee__inner", {
+    duration: 500, // Durata dell'animazione per un ciclo completo
+    xPercent: -100, // Movimento verso sinistra fino al 100% della sua larghezza
+    repeat: -1, // Loop infinito
+    ease: "linear", // Animazione lineare senza rallentamento
+    paused: true,
+});
+
+let marquee = document.querySelector(".marquee__inner");
+  marquee.addEventListener("mouseenter", (e) => {
+    veloce.pause()
+    rallentato.play()
+});
+  
+marquee.addEventListener("mouseleave", (e) => {
+    rallentato.pause()
+    veloce.play()
+});
