@@ -352,6 +352,7 @@ h2 {
 .faq-item img{
     width: 15px;
     height: 15px;
+    user-select: none;
 }
 
 .faq-question {
