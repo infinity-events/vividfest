@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="authForm">
+        <h2>Accedi o Registrati</h2>
+        <div id="form">
+            <div class="input">
+                <input type="email" id="userEmail" placeholder=" " required>
+                <label for="userEmail">Email</label>
+            </div>
+            <div class="input">
+                <input type="password" id="userPassword" placeholder=" " required>
+                <label for="userPassword">Password</label>
+            </div>
+            <div class="button">
+                <button id="signInButton">ACCEDI</button>
+                <button id="signUpButton">Crea un nuovo account</button>
+                <h4 style="text-align: center; font-weight: 100;">o</h4>
+                <button id="signInGoogle" style="z-index: 4">Accedi con Google</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="secretContent">
+        <h3>This is top secret information that you can only see if</h3>
+        <h1>AUTHENTICATED</h1>
+        <button id="signOutButton">Sign Out</button>
+    </div>
+
+    <script type="module">
+        //Update the below URL with the appropriate version if necessary.
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            GoogleAuthProvider, 
+            signInWithPopup
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+       
+      
+        // INSERT YOUR FIREBASE CONFIG OBJECT HERE
+    const firebaseConfig = {
+        apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+        authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+        projectId: "sample-firebase-ai-app-be9db",
+        storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+        messagingSenderId: "301656458329",
+        appId: "1:301656458329:web:fbc1fd553ca2912b9c9d48"
+    };
+      
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider()
+
+        const userEmail = document.getElementById("userEmail");
+        const userPassword = document.getElementById("userPassword");
+        const authForm = document.getElementById("authForm");
+        const secretContent = document.getElementById("secretContent");
+        const signUpButton = document.getElementById("signUpButton");
+        const signInButton = document.getElementById("signInButton");
+        const signOutButton = document.getElementById("signOutButton");
+        const signInGoogle = document.getElementById("signInGoogle");
+
+        secretContent.style.display = 'none';
+
+        const userSignUp = async() => {
+            const signUpEmail = userEmail.value;
+            const signUpPassword = userPassword.value;
+            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage)
+            })
+        }
+
+        const userSignIn = async() => {
+            const signInEmail = userEmail.value;
+            const signInPassword = userPassword.value;
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage)
+            })
+
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user
+                    console.log(user);
+            }).catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message
+                })
+        }
+
+        const checkAuthState = async() => {
+            onAuthStateChanged(auth, user => {
+                if(user) {
+                    authForm.style.display = 'none';
+                    secretContent.style.display = 'block';
+                }
+                else {
+                    authForm.style.display = 'block';
+                    secretContent.style.display = 'none';
+                }
+            })
+        }
+
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+
+        checkAuthState();
+
+        signUpButton.addEventListener('click', userSignUp);
+        signInButton.addEventListener('click', userSignIn);
+        signInGoogle.addEventListener('click', userSignIn);
+        signOutButton.addEventListener('click', userSignOut);
+      </script>
+</body>
+</html>

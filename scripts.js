@@ -65,7 +65,7 @@ document.querySelectorAll('a').forEach(anchor => {
 
 //COUNTDOWN
 // Set the date of the event
-const eventDate = new Date("June 21, 2025 21:00:00").getTime();
+const eventDate = new Date("June 21, 202 21:00:00").getTime();
 
 const countdownInterval = setInterval(function() {
     const now = new Date().getTime();
@@ -84,10 +84,7 @@ const countdownInterval = setInterval(function() {
     // Stop the countdown when the time is up
     if (timeRemaining < 0) {
         clearInterval(countdownInterval);
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
+        document.getElementById("countdown").style.display = "none";
     }
 }, 1000);
 
@@ -289,6 +286,5 @@ let marquee = document.querySelector(".marquee__inner");
 });
   
 marquee.addEventListener("mouseleave", (e) => {
-    rallentato.pause()
     veloce.play()
 });
