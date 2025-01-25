@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>VividFest</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129856/apple-touch-icon-180x180_sjtkco.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129862/favicon-32x32_o81htr.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129829/android-chrome-192x192_khmfiy.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129861/favicon-16x16_trezoc.png">
+    <link rel="manifest" href="https://res.cloudinary.com/dblhjs3ea/raw/upload/v1723129877/site_qoavwn.webmanifest">
+    <link rel="mask-icon" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129873/safari-pinned-tab_lykh4d.svg" color="#5bbad5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129868/mstile-144x144_mpwyfw.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M42KHJJP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+    
+<header class="header" data-header>
+    <h1><a href="index.html">VividFest</a></h1>
+    <div id="date-location">
+        <span id="date">21-22 Giugno 2025</span>
+    </div>
+    
+    <div class="menu-icon" id="menu-icon">
+        <div class="bar1" id="bar1"></div>
+        <div class="bar2" id="bar2"></div>
+        <div class="bar3" id="bar3"></div>
+    </div>
+    <nav>
+        <ul id="menu">
+            <!-- <li><a href="#festival">Festival</a></li> -->
+            <li><a href="#orari">Orari</a></li>
+            <li><a href="#dove-siamo">Dove Siamo</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+            <li><button id="signOutButton">Sign Out</button></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- <section id="festival">
+    <div class="frase-inizio">
+        <div class="text">
+            <p>VividFest è&nbsp</p>
+            <p>
+              <span class="word wisteria">unico.</span>
+              <span class="word belize">coinvolgente.</span>
+              <span class="word green">fantastico.</span>
+            </p>
+        </div>
+    </div>
+</section> -->
+
+<section id="hero" class="hero">
+    <div class="content">
+        <h1 class="animate__animated animate__fadeIn title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
+        <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+    </div>
+</section>
+
+<div class="marquee">
+    <div class="marquee__inner">
+        <!-- Testo ripetuto per creare l'effetto continuo -->
+        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+    </div>
+</div>
+
+<section id="countdown" class="countdown">
+        <div class="countdown-item">
+            <span id="days">00</span>
+            <p>GIORNI</p>
+        </div>
+        <div class="countdown-item">
+            <span id="hours">00</span>
+            <p>ORE</p>
+        </div>
+        <div class="countdown-item">
+            <span id="minutes">00</span>
+            <p>MINUTI</p>
+        </div>
+        <div class="countdown-item">
+            <span id="seconds">00</span>
+            <p>SECONDI</p>
+        </div>
+</section>
+
+<section id="orari">
+    <h2>Orari</h2>
+    <div class="table-container">
+        <div class="table-item">
+            <p>21 Giugno 2025</p>
+            <table>
+                <tr>
+                    <th>Orario</th>
+                    <th>Artista</th>
+                </tr>
+                <tr>
+                    <td>21:00</td>
+                    <td>Sounder</td>
+                </tr>
+                <tr>
+                    <td>22:00</td>
+                    <td>Boro</td>
+                </tr>
+                <tr>
+                    <td>22:45</td>
+                    <td>Fred de Palma</td>
+                </tr>
+                <tr>
+                    <td>23:15</td>
+                    <td>Diss Gacha</td>
+                </tr>
+                <tr>
+                    <td>00:15</td>
+                    <td>DJ Set Ending</td>
+                </tr>
+                <!-- Aggiungi gli altri ospiti qui -->
+            </table>
+        </div>
+        <div class="table-item">
+            <p>22 Giugno 2025</p>
+            <table>
+                <tr>
+                    <th>Orario</th>
+                    <th>Artista</th>
+                </tr>
+                <tr>
+                    <td>21:00</td>
+                    <td>JrStit</td>
+                </tr>
+                <tr>
+                    <td>22:30</td>
+                    <td>Paky</td>
+                </tr>
+                <tr>
+                    <td>23:15</td>
+                    <td>Rhove</td>
+                </tr>
+                <tr>
+                    <td>00:15</td>
+                    <td>Samuele Brignoccolo</td>
+                </tr>
+                <!-- Aggiungi gli altri ospiti qui -->
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="dove-siamo">
+    <h2>Dove Siamo</h2>
+    <p>Piazzale Gerani, Matelica MC Marche</p>
+    <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288.8836371934609!2d13.0060937!3d43.2529904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dc5943cbe7381%3A0xf0d423e584cff55c!2sPiazzale%20Gerani!5e0!3m2!1sit!2sit!4v1691503190582!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+<section id="faqs">
+    <h2>FAQs</h2>
+    <div class="faq-item">
+        <div class="faq-question">Quali sono le date del festival? <span><img src="img/freccia.png" alt=""></span></div>
+        <div class="faq-answer">Il festival si terrà il 21 e 22 Giugno 2025.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Dove si svolgerà il festival? <span><img src="img/freccia.png" alt=""></span></div>
+        <div class="faq-answer">Il festival si svolgerà a Piazzale Gerani, Matelica (MC), Marche.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Si può portare cibo? <span><img src="img/freccia.png" alt=""></span></div>
+        <div class="faq-answer">No, nei dintorni del Festival saranno allestiti degli stand con cibo e bevande.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">C'è un regolamento? <span><img src="img/freccia.png" alt=""></span></div>
+        <div class="faq-answer">Sì, potete leggere il regolamento completo sul nostro account Instagram <a href="https://www.instagram.com/vividfest_it/">@vividfest_it.</a></div>
+    </div>
+</section>
+
+<section id="sponsor">
+    <h2>Sponsor e Partner</h2>
+    <div class="sponsor-category">
+        <h3>Main Sponsor</h3>
+        <div class="sponsor-logos">
+            <img src="img/main-sponsor1.png" alt="Main Sponsor 1" class="white-logo">
+            <img src="img/main-sponsor2.png" alt="Main Sponsor 2" class="white-logo">
+            <!-- Altri loghi dei main sponsor -->
+        </div>
+    </div>
+
+    <div class="sponsor-category">
+        <h3>Premium Sponsor</h3>
+        <div class="sponsor-logos">
+            <img src="img/premium-sponsor1.png" alt="Premium Sponsor 1" class="white-logo">
+            <img src="img/premium-sponsor2.png" alt="Premium Sponsor 2" class="white-logo">
+            <!-- Altri loghi dei premium sponsor -->
+        </div>
+    </div>
+
+    <div class="sponsor-category">
+        <h3>Partner</h3>
+        <div class="sponsor-logos">
+            <img src="img/promatelica.png" alt="Partner 1" class="white-logo">
+            <img src="img/Logo-S.Rocco.png" alt="Partner 2" class="white-logo">
+            <img src="img/Logo_infinity.png" alt="Partner 2" class="white-logo">
+            <!-- Altri loghi dei partner -->
+        </div>
+    </div>
+
+    <div class="sponsor-category">
+        <h3>Sponsor</h3>
+        <div class="sponsor-logos">
+            <img src="img/sponsor1.png" alt="Sponsor 1" class="white-logo">
+            <img src="img/sponsor2.png" alt="Sponsor 2" class="white-logo">
+            <!-- Altri loghi degli sponsor -->
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h1>VividFest</h1>
+            <p>Unisciti a noi per il festival musicale più atteso dell'estate! Non perdere l'occasione di vivere un'esperienza unica e indimenticabile.</p>
+        </div>
+        <div class="footer-section social">
+            <h2>Seguici sui Social</h2>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/vividfest_it" target="_blank" class="icon instagram"></a>
+                <a href="mailto:infinityeventsit@gmail.com" class="icon email"></a>
+            </div>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contatti</h2>
+            <p>Email: <a href="mailto:infinityeventsit@gmail.com">infinityeventsit@gmail.com</a></p>
+            <p>Telefono: <a href="tel:+39 3756740558">+39 3756740558</a></p>
+            <p>Indirizzo: <a href="https://www.google.com/maps/place/Piazzale+Gerani/@43.2529865,13.0060937,667m/data=!3m2!1e3!4b1!4m6!3m5!1s0x132dc5943cbe7381:0xf0d423e584cff55c!8m2!3d43.2529865!4d13.0086686!16s%2Fg%2F11fxdyw042?entry=ttu">Piazzale Gerani, Matelica MC Marche</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 VividFest. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+
+</body>
+    <script src="scripts.js"></script>  
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            GoogleAuthProvider, 
+            signInWithPopup,
+            GithubAuthProvider
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+        authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+        projectId: "sample-firebase-ai-app-be9db",
+        storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+        messagingSenderId: "301656458329",
+        appId: "1:301656458329:web:fbc1fd553ca2912b9c9d48"
+    };
+
+        const signOutButton = document.getElementById("signOutButton");
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const checkAuthState = async() => {
+            onAuthStateChanged(auth, async user => {
+                if(user) {
+                    window.location.replace('authenticated.html');
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    document.getElementById("welcome-message").innerText = `Buongiorno, ${userData.name}!`;
+                } else {
+                    console.error("Dati utente non trovati.");
+                }
+                }
+                else {
+                    window.location.replace('index.html');
+                }
+            })
+        }
+
+        const userSignOut = async() => {
+            await signOut(auth);
+            checkAuthState();
+        }
+
+        signOutButton.addEventListener('click', userSignOut);
+    </script>
+
+</html>

@@ -288,3 +288,12 @@ let marquee = document.querySelector(".marquee__inner");
 marquee.addEventListener("mouseleave", (e) => {
     veloce.play()
 });
+
+//SIGN IN
+const userSignInHome = async() => {
+    window.location.href = 'auth.html';
+}
+
+const signInBtn = document.getElementById('signInBtn');
+signInBtn.addEventListener('click', userSignInHome);
+checkAuthState();

@@ -5,10 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="scripts.js"></script>
+    <title>VividFest | Accedi</title>
 </head>
 <body>
     <div id="authForm">
         <h2>Accedi o Registrati</h2>
+            <div id="signTabs">
+                <button id="signTabIn" class="active">Accedi</button>
+                <button id="signTabUp">Registrati</button>
+            </div>
+       
         <div id="form">
             <div class="input">
                 <input type="email" id="userEmail" placeholder=" " required>
@@ -17,20 +26,34 @@
             <div class="input">
                 <input type="password" id="userPassword" placeholder=" " required>
                 <label for="userPassword">Password</label>
+                <button id="showPassword"><i class="fi fi-rr-eye"></i></button>
             </div>
+            <div class="input nameField">
+                <input type="text" id="userName" placeholder=" " required>
+                <label for="userName">Nome</label>
+            </div>
+            <div class="input ageField">
+                <input type="number" id="userAge" placeholder=" " required>
+                <label for="userAge">Età</label>
+            </div>
+            <div id="terms">
+                <input type="checkbox" id="terms-B" required>
+                <label for="terms-B" id="terms-t">Accetto i Termini e Condizioni</label>
+            </div>
+            <!-- <div class="g-recaptcha" data-sitekey="6LeFvLgqAAAAAEQjBQ_UkMcITLDcrFWdcSdoIkp6"></div> -->
             <div class="button">
                 <button id="signInButton">ACCEDI</button>
-                <button id="signUpButton">Crea un nuovo account</button>
+                <button id="signUpButton">REGISTRATI</button>
                 <h4 style="text-align: center; font-weight: 100;">o</h4>
-                <button id="signInGoogle" style="z-index: 4">Accedi con Google</button>
+                <button id="signInGoogle" style="z-index: 4"><img src="img/google.png" class="signInIcon"></button>
+                <button id="signInGithub" style="z-index: 4"><img src="img/github.png" class="signInIcon"></button>
             </div>
         </div>
-        
     </div>
-
+    <br>
+    <div class="notification"></div>
     <div id="secretContent">
-        <h3>This is top secret information that you can only see if</h3>
-        <h1>AUTHENTICATED</h1>
+        <h1>Benvenuto<span id="credHTML"></span></h1>
         <button id="signOutButton">Sign Out</button>
     </div>
 
@@ -44,9 +67,11 @@
             onAuthStateChanged,
             signOut,
             GoogleAuthProvider, 
-            signInWithPopup
+            signInWithPopup,
+            GithubAuthProvider
         //Update the below URL with the appropriate version if necessary.
         } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
        
       
         // INSERT YOUR FIREBASE CONFIG OBJECT HERE
@@ -62,31 +87,67 @@
     
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore();
         const provider = new GoogleAuthProvider()
+        const providerGithub = new GithubAuthProvider();
 
         const userEmail = document.getElementById("userEmail");
         const userPassword = document.getElementById("userPassword");
+        const userName = document.getElementById("userName");
+        const userAge = document.getElementById("userAge");
+        const showPassword = document.getElementById("showPassword");
         const authForm = document.getElementById("authForm");
         const secretContent = document.getElementById("secretContent");
         const signUpButton = document.getElementById("signUpButton");
         const signInButton = document.getElementById("signInButton");
         const signOutButton = document.getElementById("signOutButton");
         const signInGoogle = document.getElementById("signInGoogle");
+        const signInGithub = document.getElementById("signInGithub");
 
         secretContent.style.display = 'none';
 
         const userSignUp = async() => {
             const signUpEmail = userEmail.value;
             const signUpPassword = userPassword.value;
-            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            const signUpName = userName.value;
+            const signUpAge = userAge.value;
+            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, signUpName, signUpAge)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                const uid = userCredential.user.uid;
+                const userData = {
+                    name: signUpName,
+                    age: signUpAge,
+                    email: signUpEmail
+                }
+                const docRef = doc(db, "users", uid);
+                setDoc(docRef, userData)
+                .then(() => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                console.log(user, uid, userData);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode + errorMessage)
+                
+                // Mostra un messaggio personalizzato in base al contenuto del messaggio di errore
+    if (errorMessage.includes("auth/email-already-in-use")) {
+      notification.innerText = "Questa email è già in uso. Prova con un'altra.";
+      document.getElementById("userEmail").style.border = "1px solid red";
+    } else if (errorMessage.includes("auth/invalid-email")) {
+        notification.innerText = "L'email inserita non è valida. Controlla e riprova.";
+        // document.getElementById("userEmail").style.border = "1px solid red";
+        // document.querySelector(".input label").style.color = "red";
+    } else if (errorMessage.includes("auth/weak-password")) {
+        notification.innerText = "La password è troppo debole. Usa almeno 6 caratteri.";
+        // document.getElementById("userPassword").style.border = "1px solid red";
+        // document.querySelector(".input label").style.color = "red";
+    } else {
+        notification.innerText = "Si è verificato un errore imprevisto. Riprova più tardi.";
+    }
+    showNotification(notification.innerText);
             })
         }
 
@@ -101,41 +162,148 @@
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode + errorMessage)
+                               // Mostra un messaggio personalizzato in base al contenuto del messaggio di errore
+    if (errorMessage.includes("email-already-in-use")) {
+      notification.innerText = "Questa email è già in uso. Accedi o prova con un'altra.";
+    } else if (errorMessage.includes("invalid-email")) {
+        notification.innerText = "L'email inserita non è valida. Controlla e riprova.";
+    } else if (errorMessage.includes("weak-password")) {
+        notification.innerText = "La password è troppo debole. Usa almeno 6 caratteri e includi numeri e simboli (_,!,-,?,*).";
+    } else {
+        notification.innerText = "Credenziali non valide. Riprova.";
+    }
+    showNotification(notification.innerText);
+                showNotification(notification.innerText);
             })
+        }
 
+        const userSignInGoogle = async() => {
             signInWithPopup(auth, provider)
                 .then((result) => {
                     const user = result.user
                     console.log(user);
             }).catch((error) => {
                     const errorCode = error.code;
-                    const errorMessage = error.message
+                    const errorMessage = error.message;
+                    showNotification(errorMessage);
                 })
         }
 
+        const userSignInGithub = async() => {
+            signInWithPopup(auth, providerGithub)
+                .then((result) => {
+                    const credential = GithubAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    const user = result.user;
+                    console.log(user);
+                }).catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    const email = error.customData.email;
+                    const credential = GithubAuthProvider.credentialFromError(error);
+                    // ...
+                });
+        }
+
         const checkAuthState = async() => {
-            onAuthStateChanged(auth, user => {
+            onAuthStateChanged(auth, async user => {
                 if(user) {
-                    authForm.style.display = 'none';
                     secretContent.style.display = 'block';
+                    authForm.style.display = 'none';
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    window.location.replace('authenticated.html');
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    document.getElementById("welcome-message").innerText = `Buongiorno, ${userData.name}!`;
+                } else {
+                    console.error("Dati utente non trovati.");
+                }
                 }
                 else {
-                    authForm.style.display = 'block';
                     secretContent.style.display = 'none';
+                    authForm.style.display = 'block';
                 }
             })
         }
 
         const userSignOut = async() => {
             await signOut(auth);
+            
         }
-
         checkAuthState();
+        
 
         signUpButton.addEventListener('click', userSignUp);
         signInButton.addEventListener('click', userSignIn);
-        signInGoogle.addEventListener('click', userSignIn);
+        signInGoogle.addEventListener('click', userSignInGoogle);
+        signInGithub.addEventListener('click', userSignInGithub);
         signOutButton.addEventListener('click', userSignOut);
+
+        //Notification
+        const notification = document.querySelector('.notification');
+
+        const showNotification = (message) => {
+            notification.textContent = message;
+            notification.classList.add('active');
+            setTimeout(() => {
+                notification.classList.remove('active');
+                notification.textContent = '';
+            }, 4000)
+        }
+
+        const signTabIn = document.getElementById('signTabIn');
+        const signTabUp = document.getElementById('signTabUp');
+        const userNameField = document.querySelector('.nameField');
+        const userAgeField = document.querySelector('.ageField');
+        const form = document.getElementById('form');
+        const terms = document.getElementById('terms');
+        const button = document.querySelector('.button');
+        const termsT = document.getElementById('terms-t');
+
+        signUpButton.style.display = 'none';
+        userNameField.style.display = 'none';
+        userAgeField.style.display = 'none';
+        form.style.height = '290px';
+        terms.style.display = 'none';
+        
+
+        const changeTabIn = () => {
+            signTabIn.classList.add('active');
+            signTabUp.classList.remove('active');
+            signInButton.style.display = 'block';
+            signUpButton.style.display = 'none';
+            userNameField.style.display = 'none';
+            userAgeField.style.display = 'none';
+            form.style.height = '290px';
+            terms.style.display = 'none';
+        }
+
+        const changeTabUp = () => {
+            signTabUp.classList.add('active');
+            signTabIn.classList.remove('active');
+            userNameField.style.display = 'block';
+            userAgeField.style.display = 'block';
+            signUpButton.style.display = 'block';
+            signInButton.style.display = 'none';
+            form.style.height = '400px';
+            terms.style.display = 'block';
+            button.style.marginTop = '25px';
+            termsT.style.marginB = '2px';
+        }
+
+        signTabIn.addEventListener('click', changeTabIn);
+        signTabUp.addEventListener('click', changeTabUp);
+        showPassword.addEventListener('click', () => {
+            if(userPassword.type === 'password') {
+                userPassword.type = 'text';
+                showPassword.innerHTML = '<i class="fi fi-rr-eye-crossed"></i>';
+            } else {
+                userPassword.type = 'password';
+                showPassword.innerHTML = '<i class="fi fi-rr-eye"></i>';
+            }
+        })
+
+
       </script>
 </body>
 </html>
