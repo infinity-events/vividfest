@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129856/apple-touch-icon-180x180_sjtkco.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129862/favicon-32x32_o81htr.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129829/android-chrome-192x192_khmfiy.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129861/favicon-16x16_trezoc.png">
+    <link rel="manifest" href="https://res.cloudinary.com/dblhjs3ea/raw/upload/v1723129877/site_qoavwn.webmanifest">
+    <link rel="mask-icon" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129873/safari-pinned-tab_lykh4d.svg" color="#5bbad5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129868/mstile-144x144_mpwyfw.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -53,7 +66,8 @@
     <br>
     <div class="notification"></div>
     <div id="secretContent">
-        <h1>Benvenuto<span id="credHTML"></span></h1>
+        <video autoplay loop muted src="img/loader.mp4"></video>
+        <!-- <h1>Benvenuto<span id="credHTML"></span></h1> -->
         <button id="signOutButton">Sign Out</button>
     </div>
 
@@ -206,12 +220,17 @@
         }
 
         const checkAuthState = async() => {
+            
             onAuthStateChanged(auth, async user => {
                 if(user) {
                     secretContent.style.display = 'block';
                     authForm.style.display = 'none';
+                    body.style.backgroundColor = '#fff';
                     const userDoc = await getDoc(doc(db, "users", user.uid));
-                    window.location.replace('authenticated.html');
+                    setTimeout(() => {
+                        window.location.replace('authenticated.html');
+                        body.style.backgroundColor = '#FAF3F0';
+                    }, "3000");
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
                     document.getElementById("welcome-message").innerText = `Buongiorno, ${userData.name}!`;
@@ -259,6 +278,7 @@
         const terms = document.getElementById('terms');
         const button = document.querySelector('.button');
         const termsT = document.getElementById('terms-t');
+        const body = document.querySelector('body');
 
         signUpButton.style.display = 'none';
         userNameField.style.display = 'none';

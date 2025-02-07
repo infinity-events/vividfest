@@ -445,7 +445,7 @@ tr:hover {
 }
 
 .sponsor-logos img {
-    width: auto;
+    width: 125px;
     height: auto;
     object-fit: contain;
     filter: brightness(0.5) invert(1);
@@ -983,4 +983,14 @@ footer {
     #authForm{
         margin: 10px auto;
     }
+}
+
+#secretContent video{
+    width: 50%;
+    scrollbar-width: none;
+    overflow-y: none;
+    margin-left: 25%;
+    height: auto;
+    border: none;
+    outline: none;
 }
