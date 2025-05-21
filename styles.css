@@ -33,27 +33,62 @@ body {
     margin: 0;
 }
 
-.discover{
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 150px;
+.button-discover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
 }
 
-.discover a{
-    padding: 15px 150px;
+.imgBiglietti{
+    width: 20px;
+    height: 20px;
+}
+
+.discover-buy, .discover{
+    text-align: center;
+    margin-top: 100px;
+    transition: all .2s;
+}
+
+.discover-buy a{
+    display: flex;
+    align-items: center; /* centra verticalmente */
+    gap: 8px; /* spazio tra testo e immagine (facoltativo) */
+    padding: 15px 50px;
     text-decoration: none;
     font-size: 20px;
     color: #fff;
     background-color: #ff77c0;
-    border: 0.5px solid #fff;
-    border-radius: 18px;
+    border-radius: 20px;
     transition: all .2s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.discover a:hover{
-    background-color: #fff;
-    color: #ff77c0;
+.discover a{
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3); /* Colore di sfondo semitrasparente */
+    backdrop-filter: blur(10px); /* Effetto blur */
+    -webkit-backdrop-filter: blur(10px); /* Supporto per Safari */
+    border: 0.5px solid #fff;
+    border-radius: 20px;
+    transition: all .2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.discover-buy:hover{
+    box-shadow: 0 0 8px 3px rgba(255, 119, 192, 0.6);
+    transform: scale(1.02);
+    transition: all 0.4s;
+}
+
+.discover:hover{
+    transform: scale(1.02);
+    transition: all .2s;
 }
 
 @media screen and (max-width: 768px) {
@@ -380,11 +415,189 @@ iframe {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.map-container {
+    display: grid; /* Usa il layout a griglia */
+    grid-template-columns: 1fr 1fr; /* Due colonne di uguale larghezza */
+    gap: 20px; /* Spaziatura tra le colonne */
+    width: 100%; /* Larghezza del contenitore */
+    margin: 0 auto; /* Centra il contenitore nella pagina */
+    align-items: start; /* Allinea gli elementi in alto */
+}
+
+.direction-map{
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    height: 300px;
+    background-color: #fff; 
+    color: #000;
+}
+
+.transport-options {
+    display: flex; /* Layout orizzontale */
+    justify-content: center; /* Spaziatura uniforme tra gli elementi */
+    align-items: center; /* Allinea gli elementi in alto */
+    gap: 20px; /* Spaziatura tra gli elementi */
+    flex-wrap: wrap; /* Permette di andare a capo su schermi piccoli */
+    margin: 60px 0 3px 5px;
+}
+
+.transport-item {
+    text-align: center; /* Centra il contenuto */
+    flex: 1; /* Gli elementi occupano lo stesso spazio */
+    max-width: 300px; /* Larghezza massima per ogni elemento */
+    margin: 0 20px 0px 5px;
+}
+
+.transport-icon {
+    width: 20px; /* Dimensione dell'icona */
+    height: 20px;
+    margin-bottom: 10px; /* Spaziatura sotto l'icona */
+    background-color: #ff77c0;
+    padding: 10px; /* Spaziatura interna */
+    border-radius: 50%; /* Icona circolare */
+}
+
+.transport-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.transport-item p {
+    font-size: 14px;
+    color: #555;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Biglietti */
+#biglietti {
+    padding: 20px 20px;
+    background-color: #FAF3F0; /* Colore di sfondo */
+    text-align: center;
+}
+
+.ticket-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permette di andare a capo su schermi piccoli */
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.tkt1, .tkt2{
+    transition: all 0.4s;
+}
+
+.tkt1:hover, .tkt2:hover{
+    transform: scale(1.02);
+    transition: all 0.4s;
+}
+
+.tkt2 .ticket-button-container2{
+    margin-bottom: 20px;
+}
+
+.ticket-item {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 0px 20px;
+    width: 300px;
+    text-align: left;
+}
+
+.ticket-item h3 {
+    font-size: 27px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.ticket-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.ticket-item h4 {
+    font-size: 30px;
+    color: #333;
+    margin: 8px 0px;
+}
+
+.ticket-item hr{
+    border: none;
+    border-top: 1px solid #b9b9b9; /* Linea rosa */
+    opacity: 0.5; /* Opacità della linea */
+    margin: 10px 0; /* Spaziatura sopra e sotto la linea */
+    width: 100%; /* Larghezza della linea */
+}
+
+.ticket-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.ticket-benefits li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.ticket-benefits .removed{
+    color: #d7d7d7;
+}
+
+.check-icon img{
+    color: #ff77c0; /* Colore dell'icona */
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 18px;
+    width: 17px;
+    height: 17px;
+}
+
+.ticket-button-container {
+    margin-top: 30px;
+}
+
+.buy-ticket-button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ff77c0;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+    transition: all 0.4s;
+}
+
+.buy-ticket-button:hover {
+    box-shadow: 0 0 8px 3px rgba(255, 119, 192, 0.6);
+    transform: scale(1.02);
+    transition: all 0.4s;
+}
+
+.arrow-icon {
+    width: 15px;
+    height: 15px;
+    margin-top: 5px;
+}
 
 /* Tabella degli orari */
 .table-container {
@@ -516,6 +729,9 @@ tr:hover {
 
     } */
 
+    .map-container {
+        grid-template-columns: 1fr; /* Una sola colonna */
+    }
 
     #festival{
         margin-left: 0%;

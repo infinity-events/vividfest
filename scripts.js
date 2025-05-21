@@ -5,9 +5,11 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
 
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
+        const offset = 40;
 
+        const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({
-            top: targetSection.offsetTop,
+            top: targetPosition,
             behavior: 'smooth'
         });
 
@@ -48,19 +50,23 @@ function changeText() {
 setInterval(changeText, 3000);
 
 //HERO
-document.querySelectorAll('a').forEach(anchor => {
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: 'smooth'
-        });
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const offset = 110; // altezza della navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = target.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     });
-});
+  });
 
 
 //COUNTDOWN
@@ -294,6 +300,10 @@ const userSignInHome = async() => {
     window.location.href = 'auth.html';
 }
 
-const signInBtn = document.getElementById('signInBtn');
-signInBtn.addEventListener('click', userSignInHome);
-checkAuthState();
+document.addEventListener('DOMContentLoaded', () => {
+    const signInBtn = document.getElementById('signInBtn');
+    if (signInBtn) {
+        signInBtn.addEventListener('click', userSignInHome);
+    }
+    checkAuthState();
+});

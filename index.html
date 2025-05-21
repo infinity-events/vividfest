@@ -67,7 +67,11 @@
     <section id="hero" class="hero">
         <div class="content">
             <h1 class="animate__animated animate__fadeIn title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
-            <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+            <div class="button-discover">
+                <div class="animate__animated animate__fadeIn discover-buy"><a href="#biglietti">Compra i biglietti <img class="imgBiglietti" src="img/ticket.png"></a></div>
+                <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+            </div>
+            
         </div>
     </section>
 
@@ -103,36 +107,31 @@
         <h2>Orari</h2>
         <div class="table-container">
             <div class="table-item">
-                <p>21 Giugno 2025</p>
+                <!-- <p>21 Giugno 2025</p> -->
                 <table>
                     <tr>
                         <th>Orario</th>
-                        <th>Artista</th>
+                        <th>Evento</th>
+                    </tr>
+                    <tr>
+                        <td>17:30</td>
+                        <td>Apertura porte</td>
+                    </tr>
+                    <tr>
+                        <td>19:00</td>
+                        <td>DJ Set</td>
                     </tr>
                     <tr>
                         <td>21:00</td>
-                        <td>Sounder</td>
+                        <td>Ospite</td>
                     </tr>
                     <tr>
                         <td>22:00</td>
-                        <td>Boro</td>
+                        <td>Dopo party</td>
                     </tr>
-                    <tr>
-                        <td>22:45</td>
-                        <td>Fred de Palma</td>
-                    </tr>
-                    <tr>
-                        <td>23:15</td>
-                        <td>Diss Gacha</td>
-                    </tr>
-                    <tr>
-                        <td>00:15</td>
-                        <td>DJ Set Ending</td>
-                    </tr>
-                    <!-- Aggiungi gli altri ospiti qui -->
                 </table>
             </div>
-            <div class="table-item">
+            <!-- <div class="table-item">
                 <p>22 Giugno 2025</p>
                 <table>
                     <tr>
@@ -155,8 +154,50 @@
                         <td>00:15</td>
                         <td>Samuele Brignoccolo</td>
                     </tr>
-                    <!-- Aggiungi gli altri ospiti qui -->
                 </table>
+            </div> -->
+        </div>
+    </section>
+
+    <section id="biglietti">
+        <h2>Biglietti</h2>
+        <div class="ticket-container">
+            
+            <div class="ticket-item tkt1">
+                <h3>Standard</h3>
+                <p>Consigliato per chi vuole vivere il festival in tranquillità.</p>
+                <hr>
+                <h4>€20</h4>
+                <ul class="ticket-benefits">
+                    <li><span class="check-icon"><img src="img/check.png"></span> Accesso agli stage</li>
+                    <li><span class="check-icon"><img src="img/check.png"></span> Bancarelle cibo</li>
+                    <li class="removed"><span class="check-icon"><img src="img/remove.png"></span> Accesso all'area VIP dedicata</li>
+                    <li class="removed"><span class="check-icon"><img src="img/remove.png"></span> Tour backstage</li>
+                </ul>
+                <div class="ticket-button-container">
+                    <button class="buy-ticket-button">
+                        Acquista Ora <span><img class="arrow-icon" src="img/arrow.png"></span>
+                    </button>
+                </div>
+            </div>
+    
+            
+            <div class="ticket-item tkt2">
+                <h3>VIP</h3>
+                <p>Perfetto per chi vuole godere del massimo del comfort e dell'esperienza.</p>
+                <hr>
+                <h4>€50</h4>
+                <ul class="ticket-benefits">
+                    <li><span class="check-icon"><img src="img/check.png"></span> Accesso agli stage</li>
+                    <li><span class="check-icon"><img src="img/check.png"></span> Bancarelle cibo</li>
+                    <li><span class="check-icon"><img src="img/check.png"></span> Accesso all'area VIP dedicata</li>
+                    <li><span class="check-icon"><img src="img/check.png"></span> Tour backstage</li>
+                </ul>
+                <div class="ticket-button-container2">
+                    <button class="buy-ticket-button">
+                        Acquista Ora <span><img class="arrow-icon" src="img/arrow.png"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -164,8 +205,29 @@
     <section id="dove-siamo">
         <h2>Dove Siamo</h2>
         <p>Piazzale Gerani, Matelica MC Marche</p>
-        <div id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288.8836371934609!2d13.0060937!3d43.2529904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dc5943cbe7381%3A0xf0d423e584cff55c!2sPiazzale%20Gerani!5e0!3m2!1sit!2sit!4v1691503190582!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="map-container">
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288.8836371934609!2d13.0060937!3d43.2529904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dc5943cbe7381%3A0xf0d423e584cff55c!2sPiazzale%20Gerani!5e0!3m2!1sit!2sit!4v1691503190582!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="direction-map">
+                <div class="transport-options">
+                    <div class="transport-item">
+                        <img src="img/car-icon.png" alt="Auto" class="transport-icon">
+                        <h3>In Auto</h3>
+                        <p>Segui le indicazioni per Matelica e cerca il parcheggio disponibile nelle vicinanze.</p>
+                    </div>
+                    <div class="transport-item">
+                        <img src="img/train-icon.png" alt="Treno" class="transport-icon">
+                        <h3>In Treno</h3>
+                        <p>Consulta gli orari dei treni per Matelica e scendi alla stazione più vicina.</p>
+                    </div>
+                    <div class="transport-item">
+                        <img src="img/bus-icon.png" alt="Autobus" class="transport-icon">
+                        <h3>In Autobus</h3>
+                        <p>Verifica le linee di autobus che arrivano a Matelica e pianifica il tuo viaggio.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
