@@ -25,7 +25,7 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
 });
 
 //DATE HEADER
-let texts = ["21-22 Giugno 2025", "Piazzale Gerani, Matelica"];
+let texts = ["22 Giugno 2026", "Piazzale Gerani, Matelica"];
 let currentIndex = 0;
 
 function changeText() {
