@@ -49,6 +49,10 @@
                 <input type="number" id="userAge" placeholder=" " required>
                 <label for="userAge">Età</label>
             </div>
+            <div class="input whyField">
+                <input type="text" id="userWhy" placeholder=" " required>
+                <label for="userWhy">Perché vorresti suonare?</label>
+            </div>
             <div id="terms">
                 <input type="checkbox" id="terms-B" required>
                 <label for="terms-B" id="terms-t">Accetto i Termini e Condizioni</label>
@@ -109,6 +113,7 @@
         const userPassword = document.getElementById("userPassword");
         const userName = document.getElementById("userName");
         const userAge = document.getElementById("userAge");
+        const userWhy = document.getElementById("userWhy");
         const showPassword = document.getElementById("showPassword");
         const authForm = document.getElementById("authForm");
         const secretContent = document.getElementById("secretContent");
@@ -125,6 +130,7 @@
             const signUpPassword = userPassword.value;
             const signUpName = userName.value;
             const signUpAge = userAge.value;
+            const signUpWhy = userWhy.value;
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, signUpName, signUpAge)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -132,7 +138,8 @@
                 const userData = {
                     name: signUpName,
                     age: signUpAge,
-                    email: signUpEmail
+                    email: signUpEmail,
+                    why: signUpWhy
                 }
                 const docRef = doc(db, "users", uid);
                 setDoc(docRef, userData)
@@ -274,6 +281,7 @@
         const signTabUp = document.getElementById('signTabUp');
         const userNameField = document.querySelector('.nameField');
         const userAgeField = document.querySelector('.ageField');
+        const userWhyField = document.querySelector('.whyField');
         const form = document.getElementById('form');
         const terms = document.getElementById('terms');
         const button = document.querySelector('.button');
@@ -283,6 +291,7 @@
         signUpButton.style.display = 'none';
         userNameField.style.display = 'none';
         userAgeField.style.display = 'none';
+        userWhyField.style.display = 'none';
         form.style.height = '290px';
         terms.style.display = 'none';
         
@@ -294,6 +303,7 @@
             signUpButton.style.display = 'none';
             userNameField.style.display = 'none';
             userAgeField.style.display = 'none';
+            userWhyField.style.display = 'none';
             form.style.height = '290px';
             terms.style.display = 'none';
         }
@@ -303,6 +313,7 @@
             signTabIn.classList.remove('active');
             userNameField.style.display = 'block';
             userAgeField.style.display = 'block';
+            userWhyField.style.display = 'block';
             signUpButton.style.display = 'block';
             signInButton.style.display = 'none';
             form.style.height = '400px';

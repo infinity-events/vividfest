@@ -88,10 +88,11 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.discover-buy:hover{
+.discover-buy a:hover{
     box-shadow: 0 0 8px 3px rgba(255, 119, 192, 0.6);
     transform: scale(1.02);
     transition: all 0.4s;
+    border-radius: 20px;
 }
 
 .discover:hover{
@@ -496,6 +497,12 @@ iframe {
     to { opacity: 1; }
 }
 
+@media screen and (max-width: 768px) {
+    .direction-map{
+        display: none;
+    }
+}
+
 /* Biglietti */
 #biglietti {
     padding: 20px 20px;
@@ -614,6 +621,7 @@ iframe {
     box-shadow: 0 0 8px 3px rgba(255, 119, 192, 0.6);
     transform: scale(1.02);
     transition: all 0.4s;
+    border-radius: 30px;
 }
 
 .arrow-icon {
@@ -625,6 +633,10 @@ iframe {
 @media screen and (max-width: 336px) {
     .ticket-item {
         height: 400px; /* Aumenta l'altezza per schermi piccoli */
+    }
+
+    .transport-item p{
+        display: none;
     }
     
 }
