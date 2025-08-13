@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M42KHJJP');</script>
     <!-- End Google Tag Manager -->    
@@ -73,6 +76,70 @@
             </div>
             
         </div>
+        <section id="secrets" class="secrets">
+<style>
+    .wrap { text-align:center; padding:32px; }
+    h1 { margin:0 0 10px; font-size:1.6rem; }
+    p { margin:0 0 20px; color:#94a3b8; }
+    .secret {
+      display:none;
+      margin-top:8px;
+      padding:18px 22px;
+      border:1px dashed #22c55e;
+      border-radius:12px;
+      background:rgba(34,197,94,0.08);
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .visible { display:block; animation: pop .25s ease; }
+    @keyframes pop {
+      from { transform:scale(.98); opacity:0; }
+      to   { transform:scale(1); opacity:1; }
+    }
+    .status { margin-top:12px; font-size:.9rem; color: #FAF3F0; }
+    code { background:#0b1220; padding:2px 6px; border-radius:6px; }
+  </style>
+  
+<div class="wrap">
+    <div id="secretBox" class="secret">🔒 Testo segreto: Ciao Andrea! Questo compare solo quando il toggle è attivo.</div>
+    <div id="status" class="status" style="opacity: 0;">In ascolto…</div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // 🔧 STESSA CONFIGURAZIONE DELLA DASHBOARD
+    const firebaseConfig = {
+  apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+  authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+  databaseURL: "https://sample-firebase-ai-app-be9db-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sample-firebase-ai-app-be9db",
+  storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+  messagingSenderId: "301656458329",
+  appId: "1:301656458329:web:c412a6a878e38a6f9c9d48"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const keyRef = ref(db, "secretEnabled");
+    const secretBox = document.getElementById("secretBox");
+    const statusEl = document.getElementById("status");
+
+    onValue(keyRef, (snap) => {
+      const val = snap.val() === true;
+      statusEl.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
+      if (val) {
+        secretBox.classList.add("visible");
+      } else {
+        secretBox.classList.remove("visible");
+      }
+    }, (err) => {
+      console.error("Errore lettura:", err);
+      statusEl.textContent = "Errore: " + err.message;
+    });
+  </script>
+</section>
     </section>
 
     <div class="marquee">

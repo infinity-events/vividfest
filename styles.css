@@ -58,12 +58,12 @@ body {
     align-items: center;
     text-align: center;
     gap: 8px; /* spazio tra testo e immagine (facoltativo) */
-    padding: 15px 50px;
+    padding: 18px 30px;
     text-decoration: none;
     font-size: 20px;
     color: #fff;
     background-color: #ff77c0;
-    border-radius: 20px;
+    border-radius: 30px;
     transition: all .2s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -71,7 +71,7 @@ body {
 .discover a{
     display: flex;
     align-items: center; /* centra verticalmente */
-    padding: 15px 50px;
+    padding: 18px 30px;
     text-decoration: none;
     text-align: center;
     font-size: 20px;
@@ -83,7 +83,7 @@ body {
     backdrop-filter: blur(10px); /* Effetto blur */
     -webkit-backdrop-filter: blur(10px); /* Supporto per Safari */
     border: 0.5px solid #fff;
-    border-radius: 20px;
+    border-radius: 30px;
     transition: all .2s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -92,7 +92,7 @@ body {
     box-shadow: 0 0 8px 3px rgba(255, 119, 192, 0.6);
     transform: scale(1.02);
     transition: all 0.4s;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .discover:hover{
