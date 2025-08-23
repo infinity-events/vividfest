@@ -80,7 +80,6 @@
 <style>
     .wrap { text-align:center; padding:32px; }
     h1 { margin:0 0 10px; font-size:1.6rem; }
-    p { margin:0 0 20px; color:#94a3b8; }
     .secret {
       display:none;
       margin-top:8px;
@@ -101,7 +100,7 @@
   </style>
   
 <div class="wrap">
-    <div id="secretBox" class="secret">🔒 Testo segreto: Ciao Andrea! Questo compare solo quando il toggle è attivo.</div>
+    <div id="secretBox" class="secret">🛍️ Sconti attivi! Corri a sfruttarli.</div>
     <div id="status" class="status" style="opacity: 0;">In ascolto…</div>
   </div>
 
@@ -123,8 +122,11 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const keyRef = ref(db, "secretEnabled");
+    const keyRef2 = ref(db, "secretEnabled2");
     const secretBox = document.getElementById("secretBox");
+    const secretBox2 = document.getElementById("secretBox2");
     const statusEl = document.getElementById("status");
+    const statusGuest = document.getElementById("statusGuest");
 
     onValue(keyRef, (snap) => {
       const val = snap.val() === true;
@@ -137,6 +139,21 @@
     }, (err) => {
       console.error("Errore lettura:", err);
       statusEl.textContent = "Errore: " + err.message;
+    });
+
+    onValue(keyRef2, (snap2) => {
+      const val = snap2.val() === true;
+      statusGuest.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
+      if (val) {
+        secretBox2.classList.remove("censored");
+        secretBox2.classList.add("reveal");
+      } else {
+        secretBox2.classList.remove("reveal");
+        secretBox2.classList.add("censored");
+      }
+    }, (err) => {
+      console.error("Errore lettura:", err);
+      statusGuest.textContent = "Errore: " + err.message;
     });
   </script>
 </section>
@@ -190,7 +207,8 @@
                     </tr>
                     <tr>
                         <td>21:00</td>
-                        <td>Ospite</td>
+                        <td><div id="secretBox2" class="censored">Ospite segreto 🤫</div></td>
+                        <div id="statusGuest" class="status" style="opacity: 0;">In ascolto…</div>
                     </tr>
                     <tr>
                         <td>22:00</td>

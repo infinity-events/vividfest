@@ -397,6 +397,14 @@ h2 {
     margin-left: 50%;
 }
 
+.censored {
+filter: blur(8px);
+-webkit-filter: blur(8px);
+transition: filter .2s ease, -webkit-filter .2s ease;
+}
+
+.reveal .censored { filter: none; -webkit-filter: none; pointer-events: auto; }
+
 .faq-item {
     background-color: white;
     border: 1px solid var(--accent-color);
