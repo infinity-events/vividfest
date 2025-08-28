@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>  
     <title>VividFest</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129856/apple-touch-icon-180x180_sjtkco.png">
@@ -32,21 +33,11 @@
 <header class="header" data-header>
     <h1><a href="index.html">VividFest</a></h1>
     <div id="date-location">
-        <span id="date">21-22 Giugno 2025</span>
-    </div>
-    
-    <div class="menu-icon" id="menu-icon">
-        <div class="bar1" id="bar1"></div>
-        <div class="bar2" id="bar2"></div>
-        <div class="bar3" id="bar3"></div>
+        <span id="date">22 Giugno 2026</span>
     </div>
     <nav>
         <ul id="menu">
-            <!-- <li><a href="#festival">Festival</a></li> -->
-            <li><a href="#orari">Orari</a></li>
-            <li><a href="#dove-siamo">Dove Siamo</a></li>
-            <li><a href="#faqs">FAQs</a></li>
-            <li><button id="signOutButton">Sign Out</button></li>
+            <li><button id="signOutButton">Home</button></li>
         </ul>
     </nav>
 </header>
@@ -66,168 +57,11 @@
 
 <section id="hero" class="hero">
     <div class="content">
-        <h1 class="animate__animated animate__fadeIn title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
-        <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+        <h1 class="animate__animated animate__fadeIn title-hero">GRAZIE!</h1>
+        <p style="text-align: center; color: #fff;">La tua richiesta è stata presa in considerazione. Verrai contattato all'email <span id="userEmail"></span> in caso di vincita.</p>
     </div>
 </section>
 
-<div class="marquee">
-    <div class="marquee__inner">
-        <!-- Testo ripetuto per creare l'effetto continuo -->
-        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
-        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
-        <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
-    </div>
-</div>
-
-<section id="countdown" class="countdown">
-        <div class="countdown-item">
-            <span id="days">00</span>
-            <p>GIORNI</p>
-        </div>
-        <div class="countdown-item">
-            <span id="hours">00</span>
-            <p>ORE</p>
-        </div>
-        <div class="countdown-item">
-            <span id="minutes">00</span>
-            <p>MINUTI</p>
-        </div>
-        <div class="countdown-item">
-            <span id="seconds">00</span>
-            <p>SECONDI</p>
-        </div>
-</section>
-
-<section id="orari">
-    <h2>Orari</h2>
-    <div class="table-container">
-        <div class="table-item">
-            <p>21 Giugno 2025</p>
-            <table>
-                <tr>
-                    <th>Orario</th>
-                    <th>Artista</th>
-                </tr>
-                <tr>
-                    <td>21:00</td>
-                    <td>Sounder</td>
-                </tr>
-                <tr>
-                    <td>22:00</td>
-                    <td>Boro</td>
-                </tr>
-                <tr>
-                    <td>22:45</td>
-                    <td>Fred de Palma</td>
-                </tr>
-                <tr>
-                    <td>23:15</td>
-                    <td>Diss Gacha</td>
-                </tr>
-                <tr>
-                    <td>00:15</td>
-                    <td>DJ Set Ending</td>
-                </tr>
-                <!-- Aggiungi gli altri ospiti qui -->
-            </table>
-        </div>
-        <div class="table-item">
-            <p>22 Giugno 2025</p>
-            <table>
-                <tr>
-                    <th>Orario</th>
-                    <th>Artista</th>
-                </tr>
-                <tr>
-                    <td>21:00</td>
-                    <td>JrStit</td>
-                </tr>
-                <tr>
-                    <td>22:30</td>
-                    <td>Paky</td>
-                </tr>
-                <tr>
-                    <td>23:15</td>
-                    <td>Rhove</td>
-                </tr>
-                <tr>
-                    <td>00:15</td>
-                    <td>Samuele Brignoccolo</td>
-                </tr>
-                <!-- Aggiungi gli altri ospiti qui -->
-            </table>
-        </div>
-    </div>
-</section>
-
-<section id="dove-siamo">
-    <h2>Dove Siamo</h2>
-    <p>Piazzale Gerani, Matelica MC Marche</p>
-    <div id="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288.8836371934609!2d13.0060937!3d43.2529904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dc5943cbe7381%3A0xf0d423e584cff55c!2sPiazzale%20Gerani!5e0!3m2!1sit!2sit!4v1691503190582!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-</section>
-
-<section id="faqs">
-    <h2>FAQs</h2>
-    <div class="faq-item">
-        <div class="faq-question">Quali sono le date del festival? <span><img src="img/freccia.png" alt=""></span></div>
-        <div class="faq-answer">Il festival si terrà il 21 e 22 Giugno 2025.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question">Dove si svolgerà il festival? <span><img src="img/freccia.png" alt=""></span></div>
-        <div class="faq-answer">Il festival si svolgerà a Piazzale Gerani, Matelica (MC), Marche.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question">Si può portare cibo? <span><img src="img/freccia.png" alt=""></span></div>
-        <div class="faq-answer">No, nei dintorni del Festival saranno allestiti degli stand con cibo e bevande.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question">C'è un regolamento? <span><img src="img/freccia.png" alt=""></span></div>
-        <div class="faq-answer">Sì, potete leggere il regolamento completo sul nostro account Instagram <a href="https://www.instagram.com/vividfest_it/">@vividfest_it.</a></div>
-    </div>
-</section>
-
-<section id="sponsor">
-    <h2>Sponsor e Partner</h2>
-    <div class="sponsor-category">
-        <h3>Main Sponsor</h3>
-        <div class="sponsor-logos">
-            <img src="img/main-sponsor1.png" alt="Main Sponsor 1" class="white-logo">
-            <img src="img/main-sponsor2.png" alt="Main Sponsor 2" class="white-logo">
-            <!-- Altri loghi dei main sponsor -->
-        </div>
-    </div>
-
-    <div class="sponsor-category">
-        <h3>Premium Sponsor</h3>
-        <div class="sponsor-logos">
-            <img src="img/premium-sponsor1.png" alt="Premium Sponsor 1" class="white-logo">
-            <img src="img/premium-sponsor2.png" alt="Premium Sponsor 2" class="white-logo">
-            <!-- Altri loghi dei premium sponsor -->
-        </div>
-    </div>
-
-    <div class="sponsor-category">
-        <h3>Partner</h3>
-        <div class="sponsor-logos">
-            <img src="img/promatelica.png" alt="Partner 1" class="white-logo">
-            <img src="img/Logo-S.Rocco.png" alt="Partner 2" class="white-logo">
-            <img src="img/Logo_infinity.png" alt="Partner 2" class="white-logo">
-            <!-- Altri loghi dei partner -->
-        </div>
-    </div>
-
-    <div class="sponsor-category">
-        <h3>Sponsor</h3>
-        <div class="sponsor-logos">
-            <img src="img/sponsor1.png" alt="Sponsor 1" class="white-logo">
-            <img src="img/sponsor2.png" alt="Sponsor 2" class="white-logo">
-            <!-- Altri loghi degli sponsor -->
-        </div>
-    </div>
-</section>
 
 <footer>
     <div class="footer-content">
@@ -255,7 +89,6 @@
 </footer>
 
 </body>
-    <script src="scripts.js"></script>  
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
         import {
@@ -283,23 +116,32 @@
         const signOutButton = document.getElementById("signOutButton");
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const checkAuthState = async() => {
-            onAuthStateChanged(auth, async user => {
-                if(user) {
-                    window.location.replace('authenticated.html');
-                    const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    document.getElementById("welcome-message").innerText = `Buongiorno, ${userData.name}!`;
-                } else {
-                    console.error("Dati utente non trovati.");
-                }
-                }
-                else {
-                    window.location.replace('index.html');
-                }
-            })
+        const db = getFirestore(app);
+        const emailSpan = document.getElementById('userEmail');
+        const emailFromSession = sessionStorage.getItem('userEmail');
+
+        if (emailFromSession) {
+    emailSpan.textContent = emailFromSession;
+    if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
+  } else {
+    // Fallback: se non trovi nulla, recupera via Auth+Firestore
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        emailSpan.textContent = user.email || '';
+        try {
+          const udoc = await getDoc(doc(db, "users", user.uid));
+          if (udoc.exists() && welcome) {
+            welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
+          }
+        } catch (err) {
+          console.error('Errore recupero doc in authenticated.html', err);
         }
+      } else {
+        // non loggato -> ritorna al login
+        window.location.replace('index.html');
+      }
+    });
+  }
 
         const userSignOut = async() => {
             await signOut(auth);

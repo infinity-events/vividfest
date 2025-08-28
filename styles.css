@@ -109,10 +109,6 @@ body {
         padding-top: 50px;
     }
 
-    .discover a{
-        border-radius: 20px;
-    }
-
     .discover{
         margin-top: 30px;
     }
@@ -398,9 +394,10 @@ h2 {
 }
 
 .censored {
-filter: blur(8px);
--webkit-filter: blur(8px);
-transition: filter .2s ease, -webkit-filter .2s ease;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    transition: filter .2s ease, -webkit-filter .2s ease;
+    -webkit-user-select: none;
 }
 
 .reveal .censored { filter: none; -webkit-filter: none; pointer-events: auto; }
@@ -1075,13 +1072,15 @@ footer {
 } */
 
 #signOutButton{
-    border: none;
+    border: 0.5px solid #fff;
     border-radius: 30px;
     margin: 0 auto;
     height: 35px;
     width: 10%;
     color: white;
-    background-color: #ff77c0;
+    background-color: rgba(255, 255, 255, 0.3); /* Colore di sfondo semitrasparente */
+    backdrop-filter: blur(10px); /* Effetto blur */
+    -webkit-backdrop-filter: blur(10px); /* Supporto per Safari */
     transition: all .4s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -1093,7 +1092,9 @@ footer {
     height: 35px;
     width: 10%;
     color: white;
-    background-color: #ff77c0;
+    background-color: rgba(255, 255, 255, 0.3); /* Colore di sfondo semitrasparente */
+    backdrop-filter: blur(10px); /* Effetto blur */
+    -webkit-backdrop-filter: blur(10px); /* Supporto per Safari */
     transition: all .4s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -1145,8 +1146,6 @@ footer {
     transform: scale(1.03);
     transition: all .4s;
     cursor: pointer;
-    color: #ff77c0;
-    background-color: white;
 }
 
 .notification{
