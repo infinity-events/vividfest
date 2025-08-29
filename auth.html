@@ -23,7 +23,7 @@
     <script src="scripts.js"></script>
     <title>VividFest | Accedi</title>
 </head>
-<body>
+<body style="overflow-y: scroll;">
     <div id="authForm">
         <h2>Accedi o Registrati</h2>
             <div id="signTabs">
@@ -53,10 +53,10 @@
                 <input type="text" id="userWhy" placeholder=" " required>
                 <label for="userWhy">Perché vorresti suonare?</label>
             </div>
-            <div id="terms">
+            <!-- <div id="terms">
                 <input type="checkbox" id="terms-B" required>
                 <label for="terms-B" id="terms-t">Accetto i Termini e Condizioni</label>
-            </div>
+            </div> -->
             <!-- <div class="g-recaptcha" data-sitekey="6LeFvLgqAAAAAEQjBQ_UkMcITLDcrFWdcSdoIkp6"></div> -->
             <div class="button">
                 <button id="signInButton">ACCEDI</button>
@@ -66,9 +66,10 @@
                 <button id="signInGithub" style="z-index: 4"><img src="img/github.png" class="signInIcon"></button>
             </div>
         </div>
+        <div class="notification"></div>
+        <br>
     </div>
-    <br>
-    <div class="notification"></div>
+    
     <div id="secretContent">
         <video autoplay loop muted src="img/loader.mp4"></video>
         <!-- <h1>Benvenuto<span id="credHTML"></span></h1> -->
@@ -122,6 +123,7 @@
         const signOutButton = document.getElementById("signOutButton");
         const signInGoogle = document.getElementById("signInGoogle");
         const signInGithub = document.getElementById("signInGithub");
+        const allowedDomains = ["gmail.com", "yahoo.com", "yahoo.it", "libero.it", "icloud.com", "outlook.com", "hotmail.com", "alice.it"];
 
         secretContent.style.display = 'none';
 
@@ -165,6 +167,9 @@
         notification.innerText = "La password è troppo debole. Usa almeno 6 caratteri.";
         // document.getElementById("userPassword").style.border = "1px solid red";
         // document.querySelector(".input label").style.color = "red";
+    } else if (!allowedDomains.includes(signUpEmail.split('@')[1]?.toLowerCase())) {
+        notification.innerText = "Usa un'email valida (es. gmail.com, yahoo.com, libero.it, outlook.com, icloud.com).";
+        // document.getElementById("userEmail").style.border = "1px solid red";
     } else {
         notification.innerText = "Si è verificato un errore imprevisto. Riprova più tardi.";
     }
@@ -265,6 +270,28 @@
         signInGithub.addEventListener('click', userSignInGithub);
         signOutButton.addEventListener('click', userSignOut);
 
+        userPassword.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (signInButton.style.display === 'block') {
+                    userSignIn();
+                } else {
+                    userSignUp();
+                }
+            }
+        });
+
+        userWhy.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (signInButton.style.display === 'block') {
+                    userSignIn();
+                } else {
+                    userSignUp();
+                }
+            }
+        });
+
         //Notification
         const notification = document.querySelector('.notification');
 
@@ -293,7 +320,7 @@
         userAgeField.style.display = 'none';
         userWhyField.style.display = 'none';
         form.style.height = '290px';
-        terms.style.display = 'none';
+        // terms.style.display = 'none';
         
 
         const changeTabIn = () => {
@@ -305,7 +332,7 @@
             userAgeField.style.display = 'none';
             userWhyField.style.display = 'none';
             form.style.height = '290px';
-            terms.style.display = 'none';
+            // terms.style.display = 'none';
         }
 
         const changeTabUp = () => {
@@ -316,8 +343,7 @@
             userWhyField.style.display = 'block';
             signUpButton.style.display = 'block';
             signInButton.style.display = 'none';
-            form.style.height = '400px';
-            terms.style.display = 'block';
+            form.style.height = '425px';
             button.style.marginTop = '25px';
             termsT.style.marginB = '2px';
         }

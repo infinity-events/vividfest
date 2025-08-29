@@ -1151,7 +1151,7 @@ footer {
 .notification{
     width: 346px;
     padding: 20px;
-    position: fixed;
+    position: relative;
     margin: 0 auto;
     left: 50%;
     margin-left: -195px;
@@ -1164,6 +1164,7 @@ footer {
     color: #fff;
     display: none; 
     z-index: 4;
+    transition: all 0.5s;
 }
 
 .notification.active{
@@ -1247,6 +1248,15 @@ footer {
 @media screen and (max-width: 768px) {
     #authForm{
         margin: 10px auto;
+    }
+
+    #signInBtn{
+        width: 100px;
+    }
+
+    #secretContent video{
+        width: 100%;
+        height: 100%;
     }
 }
 
