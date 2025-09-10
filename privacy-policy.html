@@ -46,16 +46,33 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(124,58,237,.18), transparent 60%),
-                  radial-gradient(900px 700px at 120% 20%, rgba(59,130,246,.15), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      letter-spacing: .2px;
+    body {margin:0; font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background: radial-gradient(100% 100% at var(--27-x-position) var(--27-y-position), #ff66c4 0%, transparent),radial-gradient(100% 100% at var(--28-x-position) var(--28-y-position), #ffdb57 0%, transparent),#ffffff;animation-name: main; animation-iteration-count: infinite; animation-duration: 8s; transition-timing-function: ease-out;}@property --6-x-position {
+      syntax: '<percentage>';
+        inherits: false;
+        initial-value: 20%;
+      }@property --6-y-position {
+        syntax: '<percentage>';
+          inherits: false;
+          initial-value: 80%;
+        }@property --27-x-position {
+      syntax: '<percentage>';
+        inherits: false;
+        initial-value: 80%;
+      }@property --27-y-position {
+        syntax: '<percentage>';
+          inherits: false;
+          initial-value: 80%;
+        }@property --28-x-position {
+      syntax: '<percentage>';
+        inherits: false;
+        initial-value: 9.788961038961055%;
+      }@property --28-y-position {
+        syntax: '<percentage>';
+          inherits: false;
+          initial-value: 18.281250000000004%;
+        }:root {--4-x-position: 20%;--4-y-position: 80%;--5-x-position: 80%;--5-y-position: 20%;--6-x-position: 20%;--6-y-position: 80%;--7-x-position: 80%;--7-y-position: 20%;--9-x-position: 80%;--9-y-position: 80%;--10-x-position: 80%;--10-y-position: 80%;--11-x-position: 80%;--11-y-position: 80%;--12-x-position: 80%;--12-y-position: 80%;--13-x-position: 80%;--13-y-position: 80%;--14-x-position: 80%;--14-y-position: 80%;--15-x-position: 80%;--15-y-position: 80%;--16-x-position: 80%;--16-y-position: 80%;--17-x-position: 59.6266233766234%;--17-y-position: 59.49218750000001%;--18-x-position: 80%;--18-y-position: 80%;--19-x-position: 9.788961038961055%;--19-y-position: 18.281250000000004%;--20-x-position: 80%;--20-y-position: 80%;--21-x-position: 9.788961038961055%;--21-y-position: 18.281250000000004%;--22-x-position: 80%;--22-y-position: 80%;--23-x-position: 80%;--23-y-position: 80%;--24-x-position: 9.788961038961055%;--24-y-position: 18.281250000000004%;--25-x-position: 80%;--25-y-position: 80%;--26-x-position: 9.788961038961055%;--26-y-position: 18.281250000000004%;--27-x-position: 80%;--27-y-position: 80%;--28-x-position: 9.788961038961055%;--28-y-position: 18.281250000000004%;}
+    @keyframes main {
+      25% {--27-x-position: 10.389610389610434%;--27-y-position: 18.75%;--28-x-position: 100%;--28-y-position: 100%;}50% {--27-x-position: 14.399350649350653%;--27-y-position: 78.203125%;--28-x-position: 90.12987012987006%;--28-y-position: 19.218749999999996%;}
     }
 
     .wrap {
