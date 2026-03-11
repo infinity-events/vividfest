@@ -27,32 +27,37 @@
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M42KHJJP');</script>
     <!-- Google Site Verification -->    
-    <meta name="google-site-verification" content="EDQehZrVf_RM7yRgTsABSED3sfPZ8tM5RFziHaBg9b4" />  
+     <meta name="google-site-verification" content="EDQehZrVf_RM7yRgTsABSED3sfPZ8tM5RFziHaBg9b4" />
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M42KHJJP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
 
-    <header class="header" data-header>
-        <h1><a href="index.html">VividFest</a></h1>
-        <div id="date-location">
-            <span id="date">22 Giugno 2026</span>
+    <header class="header vivid-header" data-header>
+        <div class="vivid-header-inner">
+            <div class="brand">
+                <h1 class="brand-title"><a href="index.html">VividFest</a></h1>
+                <div id="date-location">
+                    <span id="date">22 Giugno 2026</span>
+                </div>
+            </div>
+
+            <div class="menu-icon" id="menu-icon">
+                <div class="bar1" id="bar1"></div>
+                <div class="bar2" id="bar2"></div>
+                <div class="bar3" id="bar3"></div>
+            </div>
+
+            <nav>
+                <ul id="menu">
+                    <li><a href="#orari">Orari</a></li>
+                    <li><a href="#dove-siamo">Dove Siamo</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><button id="signInBtn">Registrati</button></li>
+                </ul>
+                <!-- <a class="header-cta" href="#biglietti">Compra ora</a> -->
+            </nav>
         </div>
-        
-        <div class="menu-icon" id="menu-icon">
-            <div class="bar1" id="bar1"></div>
-            <div class="bar2" id="bar2"></div>
-            <div class="bar3" id="bar3"></div>
-        </div>
-        <nav>
-            <ul id="menu">
-                <!-- <li><a href="#festival">Festival</a></li> -->
-                <li><a href="#orari">Orari</a></li>
-                <li><a href="#dove-siamo">Dove Siamo</a></li>
-                <li><a href="#faqs">FAQs</a></li>
-                <li><button id="signInBtn">Registrati</button></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- <section id="festival">
@@ -68,104 +73,117 @@
         </div>
     </section> -->
 
-    <section id="hero" class="hero">
+    <section id="hero" class="hero vivid-hero">
         <div class="content">
-            <h1 class="animate__animated animate__fadeIn title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
-            <div class="button-discover">
-                <div class="animate__animated animate__fadeIn discover-buy"><a href="#biglietti">Compra i biglietti <img class="imgBiglietti" src="img/ticket.png"></a></div>
-                <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+            <div class="hero-copy">
+                <p class="hero-pill">Matelica (MC) · 22 Giugno 2026</p>
+                <h1 class="animate__animated animate__fadeIn title-hero">DOVE LA MUSICA<br>PRENDE VITA</h1>
+                <p class="hero-lead">Una notte open-air con artisti internazionali, visual immersivi e una community pronta a vibrare fino all'alba.</p>
+                <div class="hero-actions">
+                    <div class="animate__animated animate__fadeIn discover-buy"><a href="#biglietti">Compra i biglietti <img class="imgBiglietti" src="img/ticket.png"></a></div>
+                    <div class="animate__animated animate__fadeIn discover"><a href="#orari">Scopri gli orari</a></div>
+                </div>
             </div>
-            
-        </div>
+            <!-- <div class="hero-card">
+                <span class="hero-badge">Novità 2026</span>
+                <h3>Esperienza luminosa totale</h3>
+                <p>Visual 360°, laser show, lounge VIP rialzata e punti food selezionati in tutta l'area.</p>
+                <ul>
+                    <li>Ingresso rapido</li>
+                    <li>Area relax con cocktail bar</li>
+                    <li>Merch esclusivo</li>
+                </ul>
+            </div> -->
+</div>
         <section id="secrets" class="secrets">
-<style>
-    .wrap { text-align:center; padding:32px; }
-    h1 { margin:0 0 10px; font-size:1.6rem; }
-    .secret {
-      display:none;
-      margin-top:8px;
-      padding:18px 22px;
-      border:1px dashed #22c55e;
-      border-radius:12px;
-      background:rgba(34,197,94,0.08);
-      font-weight:600;
-      letter-spacing:.2px;
-    }
-    .visible { display:block; animation: pop .25s ease; }
-    @keyframes pop {
-      from { transform:scale(.98); opacity:0; }
-      to   { transform:scale(1); opacity:1; }
-    }
-    .status { margin-top:12px; font-size:.9rem; color: #FAF3F0; }
-    code { background:#0b1220; padding:2px 6px; border-radius:6px; }
-  </style>
-  
-<div class="wrap">
-    <div id="secretBox" class="secret">🛍️ Sconti attivi! Corri a sfruttarli.</div>
-    <div id="status" class="status" style="opacity: 0;">In ascolto…</div>
-  </div>
+    <style>
+        .wrap { text-align:center; padding:32px; }
+        h1 { margin:0 0 10px; font-size:1.6rem; }
+        .secret {
+        display: none;
+        margin-top:8px;
+        padding:18px 22px;
+        border:1px dashed #22c55e;
+        border-radius:12px;
+        background:rgba(34,197,94,0.08);
+        font-weight:600;
+        letter-spacing:.2px;
+        }
+        .visible { display:block; animation: pop .25s ease; }
+        @keyframes pop {
+        from { transform:scale(.98); opacity:0; }
+        to   { transform:scale(1); opacity:1; }
+        }
+        .status { margin-top:12px; font-size:.9rem; color: #FAF3F0; }
+        code { background:#0b1220; padding:2px 6px; border-radius:6px; }
+    </style>
+    
+    <div class="wrap">
+        <div id="secretBox" class="secret">🛍️ Sconti attivi! Corri a sfruttarli.</div>
+        <div id="status" class="status" style="opacity: 0;">In ascolto…</div>
+    </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-    // 🔧 STESSA CONFIGURAZIONE DELLA DASHBOARD
-    const firebaseConfig = {
-  apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
-  authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
-  databaseURL: "https://sample-firebase-ai-app-be9db-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "sample-firebase-ai-app-be9db",
-  storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
-  messagingSenderId: "301656458329",
-  appId: "1:301656458329:web:c412a6a878e38a6f9c9d48"
-};
+        // 🔧 STESSA CONFIGURAZIONE DELLA DASHBOARD
+        const firebaseConfig = {
+    apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+    authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+    databaseURL: "https://sample-firebase-ai-app-be9db-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "sample-firebase-ai-app-be9db",
+    storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+    messagingSenderId: "301656458329",
+    appId: "1:301656458329:web:c412a6a878e38a6f9c9d48"
+    };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const keyRef = ref(db, "secretEnabled");
-    const keyRef2 = ref(db, "secretEnabled2");
-    const secretBox = document.getElementById("secretBox");
-    const secretBox2 = document.getElementById("secretBox2");
-    const statusEl = document.getElementById("status");
-    const statusGuest = document.getElementById("statusGuest");
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const keyRef = ref(db, "secretEnabled");
+        const keyRef2 = ref(db, "secretEnabled2");
+        const secretBox = document.getElementById("secretBox");
+        const secretBox2 = document.getElementById("secretBox2");
+        const statusEl = document.getElementById("status");
+        const statusGuest = document.getElementById("statusGuest");
 
-    onValue(keyRef, (snap) => {
-      const val = snap.val() === true;
-      statusEl.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
-      if (val) {
-        secretBox.classList.add("visible");
-      } else {
-        secretBox.classList.remove("visible");
-      }
-    }, (err) => {
-      console.error("Errore lettura:", err);
-      statusEl.textContent = "Errore: " + err.message;
-    });
+        onValue(keyRef, (snap) => {
+        const val = snap.val() === true;
+        statusEl.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
+        if (val) {
+            secretBox.classList.add("visible");
+        } else {
+            secretBox.classList.remove("visible");
+        }
+        }, (err) => {
+        console.error("Errore lettura:", err);
+        statusEl.textContent = "Errore: " + err.message;
+        });
 
-    onValue(keyRef2, (snap2) => {
-      const val = snap2.val() === true;
-      statusGuest.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
-      if (val) {
-        secretBox2.classList.remove("censored");
-        secretBox2.classList.add("reveal");
-      } else {
-        secretBox2.classList.remove("reveal");
-        secretBox2.classList.add("censored");
-      }
-    }, (err) => {
-      console.error("Errore lettura:", err);
-      statusGuest.textContent = "Errore: " + err.message;
-    });
-  </script>
-</section>
+        onValue(keyRef2, (snap2) => {
+        const val = snap2.val() === true;
+        statusGuest.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
+        if (val) {
+            secretBox2.classList.remove("censored");
+            secretBox2.classList.add("reveal");
+        } else {
+            secretBox2.classList.remove("reveal");
+            secretBox2.classList.add("censored");
+        }
+        }, (err) => {
+        console.error("Errore lettura:", err);
+        statusGuest.textContent = "Errore: " + err.message;
+        });
+    </script>
+        </section>
     </section>
 
     <div class="marquee">
         <div class="marquee__inner">
             <!-- Testo ripetuto per creare l'effetto continuo -->
-            <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
-            <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
-            <span class="marquee__text">VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025 VividFest 2025</span>
+            <span class="marquee__text">VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026</span>
+            <span class="marquee__text">VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026</span>
+            <span class="marquee__text">VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026 VividFest 2026</span>
         </div>
     </div>
 
@@ -193,28 +211,34 @@
         <div class="table-container">
             <div class="table-item">
                 <!-- <p>21 Giugno 2025</p> -->
-                <table>
-                    <tr>
-                        <th>Orario</th>
-                        <th>Evento</th>
-                    </tr>
-                    <tr>
-                        <td>17:30</td>
-                        <td>Apertura porte</td>
-                    </tr>
-                    <tr>
-                        <td>19:00</td>
-                        <td>DJ Set</td>
-                    </tr>
-                    <tr>
-                        <td>21:00</td>
-                        <td><div id="secretBox2" class="censored">Ospite segreto 🤫</div></td>
-                        <div id="statusGuest" class="status" style="opacity: 0;">In ascolto…</div>
-                    </tr>
-                    <tr>
-                        <td>22:00</td>
-                        <td>Dopo party</td>
-                    </tr>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Orario</th>
+                            <th>Evento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time">17:30</td>
+                            <td>Apertura porte</td>
+                        </tr>
+                        <tr>
+                            <td class="time">19:00</td>
+                            <td>DJ Set</td>
+                        </tr>
+                        <tr>
+                            <td class="time">21:00</td>
+                            <td>
+                                <div id="secretBox2" class="censored">Ospite segreto 🤫</div>
+                                <div id="statusGuest" class="status status-inline" style="opacity: 0;">In ascolto…</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time">22:00</td>
+                            <td>Dopo party</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <!-- <div class="table-item">
@@ -245,15 +269,18 @@
         </div>
     </section>
 
-    <section id="biglietti">
-        <h2>Biglietti</h2>
-        <div class="ticket-container">
-            
-            <div class="ticket-item tkt1">
-                <h3>Standard</h3>
+    <section id="biglietti" class="vivid-tickets">
+        <div class="tickets-head">
+            <h2>Biglietti</h2>
+            <p>Scegli la formula più adatta a te e vivi VividFest con tutta l’energia della notte.</p>
+        </div>
+        <div class="tickets-grid">
+            <article class="ticket-card">
+                <div class="ticket-top">
+                    <h3>Standard</h3>
+                    <span class="price">€20</span>
+                </div>
                 <p>Consigliato per chi vuole vivere il festival in tranquillità.</p>
-                <hr>
-                <h4>€20</h4>
                 <ul class="ticket-benefits">
                     <li><span class="check-icon"><img src="img/check.png"></span> Accesso agli stage</li>
                     <li><span class="check-icon"><img src="img/check.png"></span> Bancarelle cibo</li>
@@ -265,14 +292,14 @@
                         Acquista Ora <span><img class="arrow-icon" src="img/arrow.png"></span>
                     </button>
                 </div>
-            </div>
-    
-            
-            <div class="ticket-item tkt2">
-                <h3>VIP</h3>
+            </article>
+
+            <article class="ticket-card featured">
+                <div class="ticket-top">
+                    <h3>VIP</h3>
+                    <span class="price">€50</span>
+                </div>
                 <p>Perfetto per chi vuole godere del massimo del comfort e dell'esperienza.</p>
-                <hr>
-                <h4>€50</h4>
                 <ul class="ticket-benefits">
                     <li><span class="check-icon"><img src="img/check.png"></span> Accesso agli stage</li>
                     <li><span class="check-icon"><img src="img/check.png"></span> Bancarelle cibo</li>
@@ -284,7 +311,7 @@
                         Acquista Ora <span><img class="arrow-icon" src="img/arrow.png"></span>
                     </button>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -399,9 +426,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 VividFest. Tutti i diritti riservati.</p>
+            <p>&copy; <span id="year"></span> VividFest. Tutti i diritti riservati.</p>
         </div>
     </footer>
 </body>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="scripts.js"></script>
 </html>

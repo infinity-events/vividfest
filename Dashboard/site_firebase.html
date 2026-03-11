@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sito 2 — Testo Segreto (Firebase)</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { display:flex; min-height:100svh; align-items:center; justify-content:center; background:#111827; color:#e2e8f0; margin:0; }
+    .wrap { text-align:center; padding:32px; }
+    h1 { margin:0 0 10px; font-size:1.6rem; }
+    p { margin:0 0 20px; color:#94a3b8; }
+    .secret {
+      display:none;
+      margin-top:8px;
+      padding:18px 22px;
+      border:1px dashed #22c55e;
+      border-radius:12px;
+      background:rgba(34,197,94,0.08);
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .visible { display:block; animation: pop .25s ease; }
+    @keyframes pop {
+      from { transform:scale(.98); opacity:0; }
+      to   { transform:scale(1); opacity:1; }
+    }
+    .status { margin-top:12px; font-size:.9rem; color:#93c5fd; }
+    code { background:#0b1220; padding:2px 6px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Sito 2</h1>
+    <p>Reagisce al toggle della <code>dashboard</code> tramite Firebase Realtime Database.</p>
+    <div id="secretBox" class="secret">🔒 Testo segreto: Ciao Andrea! Questo compare solo quando il toggle è attivo.</div>
+    <div id="status" class="status">In ascolto…</div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // 🔧 STESSA CONFIGURAZIONE DELLA DASHBOARD
+    const firebaseConfig = {
+  apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+  authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+  databaseURL: "https://sample-firebase-ai-app-be9db-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sample-firebase-ai-app-be9db",
+  storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+  messagingSenderId: "301656458329",
+  appId: "1:301656458329:web:c412a6a878e38a6f9c9d48"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const keyRef = ref(db, "secretEnabled");
+    const secretBox = document.getElementById("secretBox");
+    const statusEl = document.getElementById("status");
+
+    onValue(keyRef, (snap) => {
+      const val = snap.val() === true;
+      statusEl.textContent = "Stato: " + (val ? "ATTIVO" : "SPENTO");
+      if (val) {
+        secretBox.classList.add("visible");
+      } else {
+        secretBox.classList.remove("visible");
+      }
+    }, (err) => {
+      console.error("Errore lettura:", err);
+      statusEl.textContent = "Errore: " + err.message;
+    });
+  </script>
+</body>
+</html>

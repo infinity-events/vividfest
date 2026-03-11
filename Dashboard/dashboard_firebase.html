@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — Firebase Toggle</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { display:flex; min-height:100svh; align-items:center; justify-content:center; background:#0f172a; color:#e2e8f0; margin:0; }
+    .card { background:#111827; padding:28px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.35); max-width:560px; width:92vw; }
+    h1 { margin:0 0 8px; font-size:1.5rem; }
+    p { margin:0 14px 18px 0; color:#94a3b8; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .toggle { appearance:none; width:64px; height:36px; background:#374151; border-radius:999px; position:relative; outline:none; cursor:pointer; transition:background .2s ease; }
+    .toggle::after { content:""; position:absolute; top:4px; left:4px; width:28px; height:28px; background:#e5e7eb; border-radius:50%; transition:transform .2s ease; }
+    .toggle:checked { background:#22c55e; }
+    .toggle:checked::after { transform:translateX(28px); }
+    .status { margin-top:12px; font-size:.9rem; color:#93c5fd; }
+    .statusGuest { margin-top:12px; font-size:.9rem; color:#93c5fd; }
+    code { background:#0b1220; padding:2px 6px; border-radius:6px; }
+    button { background:#1f2937; color:#e5e7eb; border:1px solid #334155; padding:8px 10px; border-radius:10px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Dashboard</h1>
+    <p>Attiva/disattiva il testo segreto sul secondo sito usando Firebase Realtime Database.</p>
+    <div class="row">
+      <span>Sconti</span>
+      <input id="secretToggle" class="toggle" type="checkbox" />
+    </div>
+    <div class="status" id="status">Stato: sconosciuto…</div>
+    <div class="row">
+      <span>Ospite</span>
+      <input id="guestToggle" class="toggle" type="checkbox" />
+    </div>
+    <div class="statusGuest" id="statusGuest">Stato: sconosciuto…</div>
+    <div class="row">
+      <span>Ospite!</span>
+      <input id="guestToggle" class="toggle" type="checkbox" />
+    </div>
+    <div class="statusGuest" id="statusGuest">Stato: sconosciuto…</div>
+  </div>
+
+  <!-- Usa ES Modules con il moderno SDK Firebase v11 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // 🔧 INCOLLA QUI LA TUA CONFIGURAZIONE
+    const firebaseConfig = {
+  apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+  authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+  databaseURL: "https://sample-firebase-ai-app-be9db-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sample-firebase-ai-app-be9db",
+  storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+  messagingSenderId: "301656458329",
+  appId: "1:301656458329:web:c412a6a878e38a6f9c9d48"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const keyRef = ref(db, "secretEnabled");
+    const keyRef2 = ref(db, "secretEnabled2");
+    const toggle = document.getElementById("secretToggle");
+    const toggleGuest = document.getElementById("guestToggle");
+    const statusEl = document.getElementById("status");
+    const statusGuest = document.getElementById("statusGuest");
+
+    function render(val) {
+      toggle.checked = val === true;
+      statusEl.textContent = "Stato: " + (toggle.checked ? "ATTIVO" : "SPENTO");
+    }
+
+    function renderGuest(val) {
+      toggleGuest.checked = val === true;
+      statusGuest.textContent = "Stato: " + (toggleGuest.checked ? "ATTIVO" : "SPENTO");
+    }
+
+    // Carica stato iniziale (se non esiste, lo crea a false)
+    try {
+      const snap = await get(keyRef);
+      if (snap.exists()) {
+        render(snap.val());
+      } else {
+        await set(keyRef, false);
+        render(false);
+      }
+    } catch (err) {
+      console.error("Errore lettura iniziale:", err);
+      statusEl.textContent = "Errore iniziale: " + err.message;
+    }
+
+    try {
+      const snap2 = await get(keyRef2);
+      if (snap2.exists()) {
+        renderGuest(snap2.val());
+      } else {
+        await set(keyRef2, false);
+        renderGuest(false);
+      }
+    } catch (err) {
+      console.error("Errore lettura iniziale:", err);
+      statusGuest.textContent = "Errore iniziale: " + err.message;
+    }
+
+    // Aggiorna DB quando cambia
+    toggle.addEventListener("change", async () => {
+      try {
+        await set(keyRef, toggle.checked);
+        statusEl.textContent = "Stato: " + (toggle.checked ? "ATTIVO" : "SPENTO");
+      } catch (err) {
+        console.error("Errore scrittura:", err);
+        alert("Errore scrittura su Firebase: " + err.message);
+        // rollback UI
+        toggle.checked = !toggle.checked;
+      }
+    });
+
+    toggleGuest.addEventListener("change", async () => {
+      try {
+        await set(keyRef2, toggleGuest.checked);
+        statusGuest.textContent = "Stato: " + (toggleGuest.checked ? "ATTIVO" : "SPENTO");
+      } catch (err) {
+        console.error("Errore scrittura:", err);
+        alert("Errore scrittura su Firebase: " + err.message);
+        // rollback UI
+        toggleGuest.checked = !toggleGuest.checked;
+      }
+    });
+
+    // (opzionale) Ascolta in tempo reale anche qui per riflettere aggiornamenti esterni
+    onValue(keyRef, (snap) => {
+      render(snap.val());
+    });
+
+    onValue(keyRef2, (snap2) => {
+      renderGuest(snap2.val());
+    });
+  </script>
+</body>
+</html>

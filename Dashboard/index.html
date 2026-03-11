@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accesso Staff — VividFest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0b1220; --card:#0f172a; --text:#e6eef9; --muted:#9ca3af; --accent:#a78bfa; }
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#061227 0%, #071b2b 100%);font-family:Montserrat,system-ui,sans-serif;color:var(--text)}
+    .card{width:min(420px,92%);background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 10px;font-size:20px}
+    p.note{color:var(--muted);margin:0 0 18px;font-size:13px}
+    input[type="password"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);outline:none;box-sizing:border-box}
+    button{margin-top:12px;padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:white;font-weight:600;cursor:pointer}
+    .error{color:#ffb4b4;margin-top:10px;font-size:13px;display:none}
+    .small{font-size:13px;color:var(--muted);margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Staff login">
+    <h1>Accesso Staff — Dashboard</h1>
+    <p class="note">Inserisci la password dello staff per accedere alla dashboard. Questa protezione è semplice e client-side (non sicura contro attacchi mirati).</p>
+
+    <label for="pwd" class="small">Password</label>
+    <input id="pwd" type="password" autocomplete="current-password" aria-label="Password staff" />
+    <button id="go">Entra</button>
+
+    <div class="error" id="err">Password errata — riprova.</div>
+    <div class="small">Se vuoi più sicurezza, usa autenticazione server-side o protezione dell’hosting.</div>
+  </div>
+
+  <script>
+    // =========================================
+    // CONFIG: inserisci qui l'hash SHA-256 della password scelta (esadecimale, lowercase)
+    // Esempio per "vividstaff2025": 
+    // 20a9fd162b243a658f26397333d953089d1820d25602b860e97da3f3cfd697dd
+    // =========================================
+    const PASSWORD_HASH = "20a9fd162b243a658f26397333d953089d1820d25602b860e97da3f3cfd697dd";
+
+    const input = document.getElementById('pwd');
+    const btn = document.getElementById('go');
+    const err = document.getElementById('err');
+
+    // Helper: convert ArrayBuffer -> hex string
+    function buf2hex(buffer){
+      return [...new Uint8Array(buffer)].map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function sha256Hex(str){
+      // usa Web Crypto per calcolare SHA-256
+      const enc = new TextEncoder();
+      const data = enc.encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      return buf2hex(hashBuffer);
+    }
+
+    btn.addEventListener('click', async ()=>{
+      err.style.display = 'none';
+      const val = input.value || "";
+      // semplice controllo vuoto
+      if(!val.trim()){ err.textContent="Inserisci la password."; err.style.display='block'; return; }
+
+      try{
+        const h = await sha256Hex(val);
+        if(h === PASSWORD_HASH){
+          // success: reindirizza alla dashboard (modifica l'URL come preferisci)
+          // esempio: dashboard.html
+          window.location.href = "https://infinity-events.github.io/dashboard-vivid/dashboard_firebase.html";
+          // oppure per mostrare la dashboard nello stesso file, potresti rimuovere la form e mostrare il contenuto
+        } else {
+          err.textContent = "Password errata — riprova.";
+          err.style.display = 'block';
+        }
+      } catch(e){
+        console.error(e);
+        err.textContent = "Errore: impossibile verificare la password in questo browser.";
+        err.style.display = 'block';
+      }
+    });
+
+    // Enter key support
+    input.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') btn.click(); });
+  </script>
+</body>
+</html>
