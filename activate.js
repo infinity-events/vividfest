@@ -16,7 +16,7 @@ async function activateWristband() {
         button.disabled = true;
         button.textContent = "Attivazione...";
         const token = await user.getIdToken();
-        const response = await fetch("https://192.168.1.189:3000/wristbands/activate", {
+        const response = await fetch("https://infinity-eventos-api.onrender.com/wristbands/activate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
