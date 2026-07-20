@@ -155,6 +155,9 @@
         const emailSpan = document.getElementById('userEmail');
         const emailFromSession = sessionStorage.getItem('userEmail');
 
+        window.auth = auth; // Rende auth accessibile globalmente
+        window.db = db; // Rende db accessibile globalmente 
+
         if (emailFromSession) {
     emailSpan.textContent = emailFromSession;
     if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;

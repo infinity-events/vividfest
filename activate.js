@@ -1,5 +1,3 @@
-import { auth } from "./firebase.js";
-
 async function activateWristband() {
     const input = document.getElementById("activationCode");
     const button = document.getElementById("activateCodeButton");
@@ -8,7 +6,7 @@ async function activateWristband() {
         alert("Inserisci il codice del braccialetto.");
         return;
     }
-    const user = auth.currentUser;
+    const user = window.auth.currentUser;
     if (!user) {
         alert("Devi effettuare il login.");
         window.location.href = "/auth.html";
