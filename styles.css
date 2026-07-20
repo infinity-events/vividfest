@@ -1590,7 +1590,7 @@ footer {
     z-index: 4;
 }
 
-#signInButton, #signUpButton{
+#signInButton, #signUpButton, #activateCodeButton{
   border: none;
   border-radius: 30px;
   margin: 0 auto;
@@ -1678,7 +1678,7 @@ footer {
     z-index: 4;
 }
 
-#signUpButton:hover, #signInButton:hover, #signInGoogle:hover, #signInGithub:hover{
+#signUpButton:hover, #signInButton:hover, #signInGoogle:hover, #signInGithub:hover, #activateCodeButton:hover{
     transform: scale(1.03);
     transition: all .4s;
     cursor: pointer;

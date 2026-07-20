@@ -328,3 +328,4 @@ document.addEventListener("keydown", function(dashE) {
         window.location.href = "https://infinity-events.github.io/dashboard-vivid";
     }
 });
+

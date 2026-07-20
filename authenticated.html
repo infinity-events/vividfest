@@ -30,12 +30,33 @@
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M42KHJJP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
     
-<header class="header" data-header>
-    <h1><a href="index.html">VividFest</a></h1>
-    <div id="date-location">
-        <span id="date">22 Giugno 2026</span>
-    </div>
-</header>
+<header class="header vivid-header" data-header>
+        <div class="vivid-header-inner">
+            <div class="brand">
+                <h1 class="brand-title"><a href="index.html">VividFest</a></h1>
+                <div id="date-location">
+                    <span id="date">22 Giugno 2026</span>
+                </div>
+            </div>
+
+            <div class="menu-icon" id="menu-icon">
+                <div class="bar1" id="bar1"></div>
+                <div class="bar2" id="bar2"></div>
+                <div class="bar3" id="bar3"></div>
+            </div>
+
+            <nav>
+                <ul id="menu">
+                    <li><a href="#orari">Orari</a></li>
+                    <li><a href="#dove-siamo">Dove Siamo</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><button id="signInBtn">Registrati</button></li>
+                </ul>
+                <!-- <a class="header-cta" href="#biglietti">Compra ora</a> -->
+            </nav>
+        </div>
+    </header>
+
 
 <!-- <section id="festival">
     <div class="frase-inizio">
@@ -52,9 +73,21 @@
 
 <section id="hero" class="hero">
     <div class="content">
-        <h1 class="animate__animated animate__fadeIn title-hero">GRAZIE!</h1>
-        <p style="text-align: center; color: #fff;">La tua richiesta è stata presa in considerazione. Verrai contattato all'email <span id="userEmail"></span> in caso di vincita.</p>
-        <button id="signOutButton" style="width: 100px; align-items: center; justify-content: center; display: flex;" >Home</button>
+        <div class="ringraziam" style="border: 1px solid rgba(187, 187, 187, 0.5); border-radius: 20px; padding: 20px; margin-bottom: 20px; background-color: rgba(249, 248, 248, 0.321); width: 70%; align-items: center; justify-content: center; display: flex; flex-direction: column; margin-left: 15%;">
+            <h1 class="animate__animated animate__fadeIn" style="text-align: center; color: #fff; font-size: 2.5rem;">GRAZIE!</h1>
+        <p style="text-align: center; color: #fff;">Ti sei registrato correttamente all'email <span id="userEmail"></span>. </p>
+        <!-- <button id="signOutButton" style="width: 100px; align-items: center; justify-content: center; display: flex;" >Home</button> -->
+        </div>
+         <div class="form" style="display: flex; flex-direction: column;  justify-content: center; margin-left: 25%; margin-top: 20px; width: 50%; ">
+            <h1 style="text-align: center; color: #fff; font-size: 2rem;">Attiva il tuo braccialetto</h1>
+            <div class="input nameField">
+                <input type="text" id="activationCode" placeholder=" " required>
+                <label for="activationCode">Codice di Attivazione</label>
+            </div>
+            <div class="buttonCode">
+                <button id="activateCodeButton" style="width: 100%; height: 35px; border-radius: 30px; border: none; background-color: #ff77c0; color: white; transition: all .4s; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">ATTIVA</button>
+            </div>
+         </div>
     </div>
 </section>
 
@@ -151,6 +184,7 @@
         }
 
         signOutButton.addEventListener('click', userSignOut);
-    </script>
 
+    </script>
+    <script type="module" src="activate.js"></script>
 </html>
