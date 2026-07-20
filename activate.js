@@ -40,7 +40,7 @@ async function activateWristband() {
                     "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    code: document.getElementById("wristbandCode").value,
+                    // code: document.getElementById("wristbandCode").value,
                     activationCode: document.getElementById("activationCode").value
                 })
             }
