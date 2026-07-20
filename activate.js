@@ -1,6 +1,6 @@
 async function activateWristband() {
     const input = document.getElementById("activationCode");
-    const button = document.getElementById("activateButton");
+    const button = document.getElementById("activateCodeButton");
     const code = input.value.trim().toUpperCase();
     if (!code) {
         alert("Inserisci il codice del braccialetto.");
@@ -16,7 +16,7 @@ async function activateWristband() {
         button.disabled = true;
         button.textContent = "Attivazione...";
         const token = await user.getIdToken();
-        const response = await fetch("https://api.infinityevents.it/wristbands/activate", {
+        const response = await fetch("https://http://192.168.1.189:3000/wristbands/activate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,7 +43,7 @@ async function activateWristband() {
 
 document.addEventListener("DOMContentLoaded", () => {
     document
-        .getElementById("activateButton")
+        .getElementById("activateCodeButton")
         .addEventListener("click", activateWristband);
 });
 

@@ -122,11 +122,11 @@
     </div>
 </footer>
 
-</body>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
         import {
+
             getAuth,
             createUserWithEmailAndPassword,
             signInWithEmailAndPassword,
@@ -137,7 +137,7 @@
             GithubAuthProvider
         //Update the below URL with the appropriate version if necessary.
         } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
         apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
@@ -186,5 +186,6 @@
         signOutButton.addEventListener('click', userSignOut);
 
     </script>
-    <script type="module" src="activate.js"></script>
+    <script type="module" src="/activate.js"></script>
+</body>
 </html>
