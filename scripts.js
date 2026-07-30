@@ -334,7 +334,7 @@ async function loadMyTickets(){
     if(!user)return;
     const token=await user.getIdToken();
     const response=await fetch(
-    `${API_URL}/tickets/user`,
+    `${API_URL}/tickets/user/me`,
     {
         headers:{
             Authorization:`Bearer ${token}`
