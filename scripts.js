@@ -351,35 +351,48 @@ const API_URL="https://infinity-eventos-api.onrender.com";
     const available =
     category.quantity-category.sold;
 
-
     window.buyTicket = async function(categoryId){
-        const user = window.auth.currentUser;
-        if(!user){
-            await signInWithPopup(
-            window.auth,
-            window.provider
-            );
-        }
-        const token = await window.auth.currentUser.getIdToken();
-        const response = await fetch(
-        `${API_URL}/tickets/purchase/${categoryId}`,
-        {
-        method:"POST",
-        headers:{
-        Authorization:`Bearer ${token}`
-        }
-        }
-        );
 
-        const ticket = await response.json();
+    if(!window.auth){
 
-        console.log(ticket);
-        alert(
-        "Biglietto acquistato!"
-        );
-        loadMyTickets();
+    console.error("Firebase non inizializzato");
+
+    return;
 
     }
+
+
+    let user = window.auth.currentUser;
+
+
+    if(!user){
+
+    await window.signInWithPopup(
+    window.auth,
+    window.provider
+    );
+
+    }
+
+    user = window.auth.currentUser;
+
+    const token =
+    await user.getIdToken();
+
+    console.log("TOKEN:",token);
+    const response = await fetch(
+    "https://infinity-eventos-api.onrender.com/tickets/purchase/"+categoryId,
+    {
+    method:"POST",
+    headers:{
+    Authorization:"Bearer "+token
+    }
+
+    });
+
+    const ticket = await response.json();
+    console.log("Ticket creato:",ticket);
+}
 
     container.innerHTML += `
 
