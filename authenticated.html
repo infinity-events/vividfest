@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
-    <script type="module" src="firebase.js"></script>  
+    <script src="scripts.js"></script>  
     <title>VividFest</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dblhjs3ea/image/upload/v1723129856/apple-touch-icon-180x180_sjtkco.png">
@@ -97,10 +96,11 @@
 
 <section id="my-tickets" class="vivid-tickets">
     <div class="tickets-head">
-        <h2>I miei biglietti</h2>
-        <p>Visualizza i tuoi accessi al festival.</p>
+    <h2>I miei biglietti</h2>
+    <p>Visualizza i tuoi accessi al festival.</p>
     </div>
     <div id="my-ticket-list" class="tickets-grid"></div>
+
 </section>
 
 
@@ -135,7 +135,7 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-    <!-- <script type="module">
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
         import {
 
@@ -200,7 +200,7 @@
 
         signOutButton.addEventListener('click', userSignOut);
 
-    </script> -->
+    </script>
     <script type="module" src="/activate.js"></script>
 </body>
 </html>

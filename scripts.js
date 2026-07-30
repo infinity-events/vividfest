@@ -1,3 +1,67 @@
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import {
+
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            GoogleAuthProvider, 
+            signInWithPopup,
+            GithubAuthProvider
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+        authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+        projectId: "sample-firebase-ai-app-be9db",
+        storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+        messagingSenderId: "301656458329",
+        appId: "1:301656458329:web:fbc1fd553ca2912b9c9d48"
+    };
+
+        const signOutButton = document.getElementById("signOutButton");
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const emailSpan = document.getElementById('userEmail');
+        const emailFromSession = sessionStorage.getItem('userEmail');
+
+        window.auth = auth; // Rende auth accessibile globalmente
+        window.db = db; // Rende db accessibile globalmente 
+
+        if (emailFromSession) {
+    emailSpan.textContent = emailFromSession;
+    if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
+  } else {
+    // Fallback: se non trovi nulla, recupera via Auth+Firestore
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        emailSpan.textContent = user.email || '';
+        try {
+          const udoc = await getDoc(doc(db, "users", user.uid));
+          if (udoc.exists() && welcome) {
+            welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
+          }
+        } catch (err) {
+          console.error('Errore recupero doc in authenticated.html', err);
+        }
+      } else {
+        // non loggato -> ritorna al login
+        window.location.replace('index.html');
+      }
+    });
+  }
+
+        const userSignOut = async() => {
+            await signOut(auth);
+            checkAuthState();
+        }
+
+        signOutButton.addEventListener('click', userSignOut);
+
 // NAVBAR
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
