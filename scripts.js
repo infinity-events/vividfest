@@ -26,11 +26,13 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
         const emailSpan = document.getElementById('userEmail');
         const emailFromSession = sessionStorage.getItem('userEmail');
 
         window.auth = auth; // Rende auth accessibile globalmente
         window.db = db; // Rende db accessibile globalmente 
+        window.provider = provider; // Rende provider accessibile globalmente 
         window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
 
         if (emailFromSession) {
@@ -394,7 +396,7 @@ document.addEventListener("keydown", function(dashE) {
     }
 });
 
-const API_URL="https://infinity-eventos-api.onrender.com";
+    const API_URL="https://infinity-eventos-api.onrender.com";
     const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
     async function loadTickets(){
     try{
@@ -409,12 +411,6 @@ const API_URL="https://infinity-eventos-api.onrender.com";
         console.error("Elemento ticket-list non trovato");
     return;
     }
-
-    categories.forEach(category=>{
-
-
-    const available =
-    category.quantity-category.sold;
 
     window.buyTicket = async function(categoryId){
 
@@ -458,6 +454,13 @@ const API_URL="https://infinity-eventos-api.onrender.com";
     const ticket = await response.json();
     console.log("Ticket creato:",ticket);
 }
+
+    categories.forEach(category=>{
+
+
+    const available =
+    category.quantity-category.sold;
+
 
     container.innerHTML += `
 
