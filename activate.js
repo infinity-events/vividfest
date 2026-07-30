@@ -90,6 +90,7 @@ const res=await fetch(
 `${API_URL}/ticket-category/${FESTIVAL_ID}`
 );
 const categories=await res.json();
+console.log("CATEGORIE:", categories);
 const container=document.getElementById("ticket-list");
 
 container.innerHTML="";
