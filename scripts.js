@@ -31,6 +31,7 @@
 
         window.auth = auth; // Rende auth accessibile globalmente
         window.db = db; // Rende db accessibile globalmente 
+        window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
 
         if (emailFromSession) {
     emailSpan.textContent = emailFromSession;
