@@ -329,3 +329,45 @@ document.addEventListener("keydown", function(dashE) {
     }
 });
 
+async function loadMyTickets(){
+    const user=auth.currentUser;
+    if(!user)return;
+    const token=await user.getIdToken();
+    const response=await fetch(
+    `${API_URL}/tickets/user`,
+    {
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }
+    );
+    const tickets=await response.json();
+    const box=document.getElementById(
+        "my-ticket-list"
+    );
+    box.innerHTML="";
+    tickets.forEach(ticket=>{
+        const canvas=document.createElement("canvas");
+        QRCode.toCanvas(
+            canvas,
+            ticket.code
+        );
+
+        box.innerHTML+=`
+        <article class="ticket-card">
+        <div class="ticket-top">
+        <h3>${ticket.type}</h3>
+        <span class="price">
+        €${ticket.price}
+        </span>
+        </div>
+        <p>
+        Codice:
+        ${ticket.code}
+        </p>
+        <div class="qr-container">
+        </div>
+        </article>
+        `;
+    });
+}

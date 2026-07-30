@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"></script>
@@ -484,6 +485,35 @@
     category.quantity-category.sold;
 
 
+    window.buyTicket = async function(categoryId){
+        const user = auth.currentUser;
+        if(!user){
+            await signInWithPopup(
+            auth,
+            provider
+            );
+        }
+        const token = await auth.currentUser.getIdToken();
+        const response = await fetch(
+        `${API_URL}/tickets/purchase/${categoryId}`,
+        {
+        method:"POST",
+        headers:{
+        Authorization:`Bearer ${token}`
+        }
+        }
+        );
+
+        const ticket = await response.json();
+
+        console.log(ticket);
+        alert(
+        "Biglietto acquistato!"
+        );
+        loadMyTickets();
+
+    }
+
     container.innerHTML += `
 
     <article class="ticket-card ${category.type==="VIP" ? "featured" : ""}">
@@ -548,7 +578,7 @@
 
     <div class="ticket-button-container">
 
-    <button class="buy-ticket-button">
+    <button class="buy-ticket-button" onclick="buyTicket('${category.id}')">
 
     <span>
     Acquista Ora
