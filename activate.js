@@ -82,3 +82,133 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("CLICK");
     });
 });
+
+const API_URL="https://infinity-eventos-api.onrender.com";
+const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
+async function loadTickets(){
+const res=await fetch(
+`${API_URL}/ticket-category/${FESTIVAL_ID}`
+);
+const categories=await res.json();
+const container=document.getElementById("ticket-list");
+
+container.innerHTML="";
+categories.forEach(category=>{
+
+const available =
+category.quantity-category.sold;
+
+container.innerHTML+=`
+<article class="ticket-card ${category.type==="VIP" ? "featured" : ""}">
+
+    <div class="ticket-top">
+
+        <h3>${category.name}</h3>
+
+        <span class="price">
+            €${category.price}
+        </span>
+
+    </div>
+
+    <p>
+        Vivi VividFest con il pacchetto ${category.name}.
+    </p>
+
+    <ul class="ticket-benefits">
+
+        <li>
+            <span class="check-icon">
+                <img src="img/check.png">
+            </span>
+            Accesso agli stage
+        </li>
+
+
+        <li>
+            <span class="check-icon">
+                <img src="img/check.png">
+            </span>
+            Bancarelle cibo
+        </li>
+
+        ${
+        category.type==="VIP" || category.type==="BACKSTAGE"
+        ?
+        `
+        <li>
+            <span class="check-icon">
+                <img src="img/check.png">
+            </span>
+            Accesso area dedicata
+        </li>
+        `
+        :
+        `
+        <li class="removed">
+            <span class="check-icon">
+                <img src="img/remove.png">
+            </span>
+            Accesso area dedicata
+        </li>
+        `
+        }
+
+        ${
+        category.type==="BACKSTAGE"
+        ?
+        `
+        <li>
+            <span class="check-icon">
+                <img src="img/check.png">
+            </span>
+            Tour backstage
+        </li>
+        `
+        :
+        `
+        <li class="removed">
+            <span class="check-icon">
+                <img src="img/remove.png">
+            </span>
+            Tour backstage
+        </li>
+        `
+        }
+
+    </ul>
+
+    <div class="ticket-button-container">
+
+        ${
+        available>0
+        ?
+        `
+        <button 
+        class="buy-ticket-button"
+        onclick="buyTicket('${category.id}')">
+
+            <span>
+                Acquista Ora
+                <img class="arrow-icon" src="img/arrow.png">
+            </span>
+
+        </button>
+        `
+        :
+        `
+        <button 
+        class="buy-ticket-button"
+        disabled>
+
+            Esaurito
+
+        </button>
+        `
+        }
+    </div>
+</article>
+`;
+});
+}
+loadTickets();
