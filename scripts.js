@@ -329,6 +329,160 @@ document.addEventListener("keydown", function(dashE) {
     }
 });
 
+const API_URL="https://infinity-eventos-api.onrender.com";
+    const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
+    async function loadTickets(){
+    try{
+        const response = await fetch(
+        `${API_URL}/ticket-category/${FESTIVAL_ID}`
+    );
+
+    const categories = await response.json();
+    console.log("Categorie ricevute:", categories);
+    const container=document.getElementById("ticket-list");
+    if(!container){
+        console.error("Elemento ticket-list non trovato");
+    return;
+    }
+
+    categories.forEach(category=>{
+
+
+    const available =
+    category.quantity-category.sold;
+
+
+    window.buyTicket = async function(categoryId){
+        const user = window.auth.currentUser;
+        if(!user){
+            await signInWithPopup(
+            window.auth,
+            window.provider
+            );
+        }
+        const token = await window.auth.currentUser.getIdToken();
+        const response = await fetch(
+        `${API_URL}/tickets/purchase/${categoryId}`,
+        {
+        method:"POST",
+        headers:{
+        Authorization:`Bearer ${token}`
+        }
+        }
+        );
+
+        const ticket = await response.json();
+
+        console.log(ticket);
+        alert(
+        "Biglietto acquistato!"
+        );
+        loadMyTickets();
+
+    }
+
+    container.innerHTML += `
+
+    <article class="ticket-card ${category.type==="VIP" ? "featured" : ""}">
+
+    <div class="ticket-top">
+
+    <h3>${category.name}</h3>
+
+    <span class="price">
+    €${category.price}
+    </span>
+
+    </div>
+
+
+    <ul class="ticket-benefits">
+
+    <li>
+    <span class="check-icon">
+    <img src="img/check.png">
+    </span>
+    Accesso agli stage
+    </li>
+
+
+    <li>
+    <span class="check-icon">
+    <img src="img/check.png">
+    </span>
+    Bancarelle cibo
+    </li>
+
+
+    <li class="${category.type==="VIP" ? "" : "removed"}">
+
+    <span class="check-icon">
+
+    <img src="img/${category.type==="VIP" ? "check.png" : "remove.png"}">
+
+    </span>
+
+    Accesso area VIP dedicata
+
+    </li>
+
+
+    <li class="${category.type==="BACKSTAGE" ? "" : "removed"}">
+
+    <span class="check-icon">
+
+    <img src="img/${category.type==="BACKSTAGE" ? "check.png" : "remove.png"}">
+
+    </span>
+
+    Tour backstage
+
+    </li>
+
+
+    </ul>
+
+
+    <div class="ticket-button-container">
+
+    <button class="buy-ticket-button" onclick="buyTicket('${category.id}')">
+
+    <span>
+    Acquista Ora
+    <img class="arrow-icon" src="img/arrow.png">
+    </span>
+
+    </button>
+
+
+    </div>
+
+
+    </article>
+
+    `;
+
+    });
+
+
+    }
+    catch(error){
+
+    console.error(
+    "Errore caricamento ticket:",
+    error
+    );
+
+    }
+
+    }
+
+
+    document.addEventListener(
+    "DOMContentLoaded",
+    loadTickets
+    );
+
 async function loadMyTickets(){
     const user=auth.currentUser;
     if(!user)return;
