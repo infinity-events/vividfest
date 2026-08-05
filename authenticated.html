@@ -58,16 +58,13 @@
 
 <div class="profile-container">
     <aside class="profile-sidebar">
-    <div class="profile-logo">
-    <h2>VividFest</h2>
-    </div>
         <nav>
-            <button class="profile-link active" data-page="home">🏠 Home</button>
-            <button class="profile-link" data-page="tickets">🎟️ I miei biglietti</button>
-            <button class="profile-link" data-page="activation">🟣 Attiva braccialetto</button>
-            <button class="profile-link" data-page="account">👤 Profilo</button>
-            <button class="profile-link" data-page="faq">❓ FAQ</button>
-            <button id="signOutButton" class="logout">🚪 Logout</button>
+            <button class="profile-link active" data-page="home"><img src="img/home.png"> Home</button>
+            <button class="profile-link" data-page="tickets"><img src="img/ticket-nero.png"> I miei biglietti</button>
+            <button class="profile-link" data-page="activation"><img src="img/bracelet.png"> Attiva braccialetto</button>
+            <button class="profile-link" data-page="account"><img src="img/user.png"> Profilo</button>
+            <button class="profile-link" data-page="faq"><img src="img/question.png"> FAQ</button>
+            <button id="signOutButton" class="logout"><img src="img/exit.png"> Logout</button>
         </nav>
     </aside>
 
@@ -75,21 +72,22 @@
     <section id="page-home" class="profile-page active">
         <div class="profile-card">
             <h1>Ciao <span id="userName"></span> 👋</h1>
-            <p>Benvenuto nella tua area personale VividFest.</p>
+            <p>Benvenuto nella tua area personale VividFest. Qui potrai modificare le informazioni del tuo profilo e trovare informazioni su tutti gli eventi relativi al VividFest.</p>
         </div>
     </section>
 
     <section id="page-tickets" class="profile-page">
         <div class="tickets-head">
             <h2>I miei biglietti</h2>
-            <p>Visualizza i tuoi accessi al festival.</p>
+            <p>Visualizza i tuoi accessi al festival e gestisci i tuoi biglietti.</p>
         </div>
-        <div id="my-ticket-list"class="tickets-grid"></div>
+        <div id="my-ticket-list"class="tickets-list"></div>
     </section>
 
     <section id="page-activation" class="profile-page">
         <div class="form">
-            <h1>Attiva il tuo braccialetto</h1>
+            <h2>Attiva il tuo braccialetto</h2>
+            <p>Inserisci i codici per attivare il tuo braccialetto e dopo sarai in grado di accedere al festival e usarlo come wallet digitale.</p>
             <div class="input nameField">
             <input type="text" id="activationCode" placeholder=" " required>
             <label>Codice Attivazione</label>
@@ -113,19 +111,22 @@
     </section>
 
     <section id="page-faq" class="profile-page">
-        <div class="profile-card">
-            <h2>Domande frequenti</h2>
-            <p>
-                <strong>Come attivo il braccialetto?</strong>
-                <br>
-                Inserisci il codice ricevuto nella confezione.
-            </p>
-
-            <p>
-                <strong>Dove trovo il biglietto?</strong>
-                <br>
-                Nella sezione "<a href="#page-tickets">I miei Biglietti</a>".
-            </p>
+        <h2>FAQs</h2>
+        <div class="faq-item">
+            <div class="faq-question">Come attivo il mio braccialetto? <span><img src="img/freccia.png" alt=""></span></div>
+            <div class="faq-answer">Puoi attivare il tuo braccialetto inserendo il codice di attivazione nella sezione "<a href="#page-activation">Attiva braccialetto</a>".</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Dove si svolgerà il festival? <span><img src="img/freccia.png" alt=""></span></div>
+            <div class="faq-answer">Il festival si svolgerà al Parco Urbano Maria F. Conti, Matelica (MC), Marche.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Si può portare cibo? <span><img src="img/freccia.png" alt=""></span></div>
+            <div class="faq-answer">No, nei dintorni del Festival saranno allestiti degli stand con cibo e bevande.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Qual è il regolamento del festival? <span><img src="img/freccia.png" alt=""></span></div>
+            <div class="faq-answer">Potete leggere il regolamento completo sul nostro account Instagram <a href="https://www.instagram.com/vividfest_it/">@vividfest_it.</a></div>
         </div>
     </section>
 </main>

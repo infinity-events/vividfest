@@ -86,49 +86,116 @@ document.addEventListener("DOMContentLoaded", () => {
 //TICKETS
 window.loadMyTickets = async function(token){
 
+const box=document.getElementById("my-ticket-list");
+
+if(!box)return;
+
+// MOSTRA SKELETON
+box.innerHTML=`
+<div class="ticket-skeleton">
+    <div class="skeleton-line small"></div>
+    <div class="skeleton-line big"></div>
+    <div class="skeleton-info"></div>
+</div>
+
+<div class="ticket-skeleton">
+    <div class="skeleton-line small"></div>
+    <div class="skeleton-line big"></div>
+    <div class="skeleton-info"></div>
+</div>
+
+<div class="ticket-skeleton">
+    <div class="skeleton-line small"></div>
+    <div class="skeleton-line big"></div>
+    <div class="skeleton-info"></div>
+</div>
+`;
+
+try{
 const response = await fetch(
 "https://infinity-eventos-api.onrender.com/tickets/user/me",
 {
 method:"GET",
 headers:{
-    "Authorization": `Bearer ${token}`,
-    "Content-Type":"application/json"
+"Authorization":`Bearer ${token}`,
+"Content-Type":"application/json"
 }
 });
-
-console.log(
-"RISPOSTA TICKET:",
-response.status
-);
-
-const tickets = await response.json();
-
+const tickets=await response.json();
 console.log("TICKET:",tickets);
+if(!tickets.length){
 
-const box=document.getElementById(
-"my-ticket-list"
-);
-
-if(!box)return;
+box.innerHTML=`
+<div class="empty-ticket">
+    <h2>🎟️</h2>
+    <h3>
+        Nessun biglietto trovato
+    </h3>
+    <p>
+        Quando acquisterai un biglietto comparirà qui.
+    </p>
+</div>
+`;
+return;
+}
 
 box.innerHTML="";
-tickets.forEach(ticket=>{
-box.innerHTML += `
-<article class="ticket-card">
-<h3>
-${ticket.festival.name}
-</h3>
-<p>
-Codice:
-<b>${ticket.code}</b>
-</p>
-<p>
-Prezzo:
-€${ticket.price}
-</p>
+tickets.forEach((ticket,index)=>{
+
+setTimeout(()=>{
+box.innerHTML+=`
+<article class="ticket loaded">
+    <div class="ticket-left">
+        <div class="ticket-type">
+            ${ticket.type}
+        </div>
+        <h2>
+            ${ticket.festival.name}
+        </h2>
+        <div class="ticket-info">
+            <span>
+                🎟️ ${ticket.code}
+            </span>
+            <span>
+                💶 €${ticket.price}
+            </span>
+            <span>
+                ${ticket.status}
+            </span>
+        </div>
+    </div>
+    <div class="ticket-right">
+    <div id="qr-${ticket.id}" class="ticket-qr"></div>
+    </div>
 </article>
 `;
+
+new QRCode(
+document.getElementById(`qr-${ticket.id}`),
+    {
+        text:ticket.code,
+        width:120,
+        height:120
+    }
+);
+
+},index*150);
+
 });
+
+}catch(error){
+console.error(error);
+box.innerHTML=`
+<div class="empty-ticket">
+<h3>
+Errore caricamento biglietti
+</h3>
+<p>
+Riprova tra poco.
+</p>
+</div>
+`;
+}
 }
 
 const API_URL=
