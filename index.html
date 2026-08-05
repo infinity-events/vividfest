@@ -446,7 +446,7 @@
             <p>&copy; <span id="year"></span> VividFest. Tutti i diritti riservati.</p>
         </div>
     </footer>
-    
+
 <script type="module">
     const API_URL="https://infinity-eventos-api.onrender.com";
     const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
@@ -472,7 +472,10 @@
 
 
     window.buyTicket = async function(categoryId){
+        console.log("CATEGORY ID:", categoryId);
+        console.log("AUTH:", window.auth);
         const user = window.auth.currentUser;
+        console.log("USER:", user);
         if(!user){
             await signInWithPopup(
             window.auth,
@@ -485,6 +488,7 @@
         {
         method:"POST",
         headers:{
+        "Content-Type":"application/json",
         Authorization:`Bearer ${token}`
         }
         }
