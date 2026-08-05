@@ -188,34 +188,29 @@
         signOutButton.addEventListener('click', userSignOut);
 
 //TICKETS
-window.loadMyTickets = async function(){
-const user = auth.currentUser;
-if(!user){
-    console.log("Nessun utente Firebase");
-    return;
-}
-
-const token = await user.getIdToken(true);
+window.loadMyTickets = async function(token){
 
 const response = await fetch(
 "https://infinity-eventos-api.onrender.com/tickets/user/me",
 {
+method:"GET",
 headers:{
-Authorization:`Bearer ${token}`
+    "Authorization": `Bearer ${token}`,
+    "Content-Type":"application/json"
 }
 });
 
-if(!response.ok){
-
-console.error(
-"Errore caricamento ticket:",
+console.log(
+"RISPOSTA TICKET:",
 response.status
 );
-return;
 
-}
 const tickets = await response.json();
-console.log("TICKET UTENTE:", tickets);
+
+console.log(
+"TICKET:",
+tickets
+);
 
 const box=document.getElementById(
 "my-ticket-list"
@@ -224,62 +219,37 @@ const box=document.getElementById(
 if(!box)return;
 
 box.innerHTML="";
-
-if(tickets.length===0){
-
-box.innerHTML=`
-<p style="color:white;text-align:center">
-Non hai ancora acquistato biglietti.
-</p>
-`;
-return;
-}
-
 tickets.forEach(ticket=>{
-box.innerHTML+=`
-
+box.innerHTML += `
 <article class="ticket-card">
-    <div class="ticket-top">
-        <h3>
-        ${ticket.festival.name}
-        </h3>
-        <span class="price">
-        €${ticket.price}
-        </span>
-    </div>
-    <p>
-    Tipo:
-    <b>${ticket.type}</b>
-    </p>
-    <p>
-    Codice:
-    <b>${ticket.code}</b>
-    </p>
-    <div id="qr-${ticket.id}"></div>
+<h3>
+${ticket.festival.name}
+</h3>
+<p>
+Codice:
+<b>${ticket.code}</b>
+</p>
+<p>
+Prezzo:
+€${ticket.price}
+</p>
 </article>
-
 `;
-
-QRCode.toCanvas(
-document.getElementById(`qr-${ticket.id}`),
-ticket.code
-);
 });
 }
 
 const API_URL=
 "https://infinity-eventos-api.onrender.com";
 
-onAuthStateChanged(auth, async(user)=>{
-    if(user){
-        console.log(
-        "UTENTE LOGGATO",
-        user.email
-        );
-    await loadMyTickets();
-    }else{
-        window.location.replace("index.html");
+onAuthStateChanged(auth, async (user)=>{
+    if(!user){
+        console.log("utente non loggato");
+        return;
     }
+    console.log("utente Firebase:", user.email);
+    const token = await user.getIdToken();
+    console.log("TOKEN:", token);
+    loadMyTickets(token);
 });
 
     </script>
