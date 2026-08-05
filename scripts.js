@@ -27,6 +27,8 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
+        console.log("Firebase pronto:", window.auth);
+
         const emailSpan = document.getElementById('userEmail');
         const emailFromSession = sessionStorage.getItem('userEmail');
 
@@ -35,6 +37,30 @@
         window.db = db; // Rende db accessibile globalmente 
         window.provider = new GoogleAuthProvider(); // Rende provider accessibile globalmente 
         window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
+
+        const accountContainer = document.getElementById("account-container");
+
+        onAuthStateChanged(auth, (user)=>{
+            if(!accountContainer) return;
+            if(user){
+                accountContainer.innerHTML = `
+                <a href="profile.html" class="profile-icon">
+                    <img src="img/profile.png" alt="Profilo">
+                </a>
+                `;
+            } else {
+                accountContainer.innerHTML = `
+                <button id="signInBtn">
+                    Registrati
+                </button>
+                `;
+                document.getElementById("signInBtn")
+                ?.addEventListener("click",()=>{
+                    window.location.href="auth.html";
+                });
+            }
+        });
+
 
 //         if (emailFromSession) {
 //     emailSpan.textContent = emailFromSession;
@@ -68,46 +94,54 @@
 
     const API_URL="https://infinity-eventos-api.onrender.com";
     const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
-async function loadMyTickets(){
-    const user=auth.currentUser;
-    if(!user)return;
-    const token=await user.getIdToken();
-    const response=await fetch(
-    `${API_URL}/tickets/user/me`,
-    {
-        headers:{
-            Authorization:`Bearer ${token}`
+
+    window.loadMyTickets = async function(){
+    const user = window.auth.currentUser;
+    if(!user) return;
+    const token = await user.getIdToken();
+
+    const response = await fetch(
+        `${API_URL}/tickets/user/me`,
+        {
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
         }
-    }
     );
-    const tickets=await response.json();
+
+    const tickets = await response.json();
+
     const box=document.getElementById(
         "my-ticket-list"
     );
-    box.innerHTML="";
-    tickets.forEach(ticket=>{
-        const canvas=document.createElement("canvas");
-        QRCode.toCanvas(
-            canvas,
-            ticket.code
-        );
 
-        box.innerHTML+=`
+    if(!box) return;
+    box.innerHTML="";
+
+    tickets.forEach(ticket=>{
+        box.innerHTML += `
         <article class="ticket-card">
-        <div class="ticket-top">
-        <h3>${ticket.type}</h3>
-        <span class="price">
-        €${ticket.price}
-        </span>
-        </div>
-        <p>
-        Codice:
-        ${ticket.code}
-        </p>
-        <div class="qr-container">
-        </div>
+            <div class="ticket-top">
+                <h3>${ticket.type}</h3>
+                <span class="price">
+                    €${ticket.price}
+                </span>
+            </div>
+
+            <p>
+            Codice:
+            ${ticket.code}
+            </p>
+
+            <div class="qr-container"
+            id="qr-${ticket.id}">
+            </div>
         </article>
         `;
+        QRCode.toCanvas(
+            document.querySelector(`#qr-${ticket.id}`),
+            ticket.code
+        );
     });
 }
 
