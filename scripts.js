@@ -45,7 +45,7 @@
             if(user){
                 accountContainer.innerHTML = `
                 <a href="authenticated.html" class="profile-icon">
-                    <img src="img/profile.png" alt="Profilo">
+                    <img src="${user.photoURL}" class="profile-avatar"></a>
                 </a>
                 `;
             } else {
