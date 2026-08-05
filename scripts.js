@@ -427,53 +427,57 @@ const firebaseConfig = {
     const API_URL="https://infinity-eventos-api.onrender.com";
     const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
 
-    window.loadMyTickets = async function(){
+async function loadMyTickets(){
     const user = window.auth.currentUser;
-    if(!user) return;
+    if(!user){
+        return;
+    }
+
     const token = await user.getIdToken();
 
     const response = await fetch(
-        `${API_URL}/tickets/user/me`,
-        {
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
+    "https://infinity-eventos-api.onrender.com/tickets/user/me",
+    {
+        headers:{
+            Authorization:`Bearer ${token}`
         }
+    }
     );
 
     const tickets = await response.json();
+    const container =
+    document.getElementById("my-ticket-list");
 
-    const box=document.getElementById(
-        "my-ticket-list"
-    );
+    if(!container) return;
 
-    if(!box) return;
-    box.innerHTML="";
+    container.innerHTML="";
 
     tickets.forEach(ticket=>{
-        box.innerHTML += `
-        <article class="ticket-card">
-            <div class="ticket-top">
-                <h3>${ticket.type}</h3>
-                <span class="price">
-                    €${ticket.price}
-                </span>
-            </div>
-
-            <p>
-            Codice:
-            ${ticket.code}
-            </p>
-
-            <div class="qr-container"
-            id="qr-${ticket.id}">
-            </div>
-        </article>
-        `;
-        QRCode.toCanvas(
-            document.querySelector(`#qr-${ticket.id}`),
-            ticket.code
-        );
+    container.innerHTML += `
+    <article class="ticket-card">
+        <div class="ticket-top">
+            <h3>${ticket.type}</h3>
+            <span class="price">
+            €${ticket.price}
+            </span>
+        </div>
+        <p>
+        Codice:
+        <strong>${ticket.code}</strong>
+        </p>
+        <p>
+        Festival:
+        ${ticket.festival.name}
+        </p>
+        <div class="qr-container">
+            <canvas id="qr-${ticket.id}"></canvas>
+        </div>
+    </article>
+    `;
+    QRCode.toCanvas(
+    document.getElementById(`qr-${ticket.id}`),
+    ticket.code
+    );
     });
 }
 
