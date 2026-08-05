@@ -172,155 +172,6 @@ faqItems.forEach(item => {
     });
 });
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    GoogleAuthProvider, 
-    signInWithPopup,
-    GithubAuthProvider
-//Update the below URL with the appropriate version if necessary.
-    } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
-    authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
-    projectId: "sample-firebase-ai-app-be9db",
-    storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
-    messagingSenderId: "301656458329",
-    appId: "1:301656458329:web:fbc1fd553ca2912b9c9d48"
-};
-
-        const signOutButton = document.getElementById("signOutButton");
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
-        console.log("Firebase pronto:", window.auth);
-
-        const emailSpan = document.getElementById('userEmail');
-        const emailFromSession = sessionStorage.getItem('userEmail');
-
-        window.auth = auth; // Rende auth accessibile globalmente
-        console.log("AUTH GLOBALE:", window.auth);
-        window.db = db; // Rende db accessibile globalmente 
-        window.provider = new GoogleAuthProvider(); // Rende provider accessibile globalmente 
-        window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
-
-        const accountContainer = document.getElementById("account-container");
-
-        onAuthStateChanged(auth, (user)=>{
-            if(!accountContainer) return;
-            if(user){
-                accountContainer.innerHTML = `
-                <a href="authenticated.html" class="profile-icon">
-                    <img src="${user.photoURL}" class="profile-avatar"></a>
-                </a>
-                `;
-            } else {
-                accountContainer.innerHTML = `
-                <button id="signInBtn">
-                    Registrati
-                </button>
-                `;
-                document.getElementById("signInBtn")
-                ?.addEventListener("click",()=>{
-                    window.location.href="auth.html";
-                });
-            }
-        });
-
-
-//         if (emailFromSession) {
-//     emailSpan.textContent = emailFromSession;
-//     if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
-//   } else {
-//     // Fallback: se non trovi nulla, recupera via Auth+Firestore
-//     onAuthStateChanged(auth, async (user) => {
-//       if (user) {
-//         emailSpan.textContent = user.email || '';
-//         try {
-//           const udoc = await getDoc(doc(db, "users", user.uid));
-//           if (udoc.exists() && welcome) {
-//             welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
-//           }
-//         } catch (err) {
-//           console.error('Errore recupero doc in authenticated.html', err);
-//         }
-//       } else {
-//         // non loggato -> ritorna al login
-//         window.location.replace('index.html');
-//       }
-//     });
-//   }
-
-        const userSignOut = async() => {
-            await signOut(auth);
-            checkAuthState();
-        }
-
-        signOutButton.addEventListener('click', userSignOut);
-
-    const API_URL="https://infinity-eventos-api.onrender.com";
-    const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
-
-    window.loadMyTickets = async function(){
-    const user = window.auth.currentUser;
-    if(!user) return;
-    const token = await user.getIdToken();
-
-    const response = await fetch(
-        `${API_URL}/tickets/user/me`,
-        {
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        }
-    );
-
-    const tickets = await response.json();
-
-    const box=document.getElementById(
-        "my-ticket-list"
-    );
-
-    if(!box) return;
-    box.innerHTML="";
-
-    tickets.forEach(ticket=>{
-        box.innerHTML += `
-        <article class="ticket-card">
-            <div class="ticket-top">
-                <h3>${ticket.type}</h3>
-                <span class="price">
-                    €${ticket.price}
-                </span>
-            </div>
-
-            <p>
-            Codice:
-            ${ticket.code}
-            </p>
-
-            <div class="qr-container"
-            id="qr-${ticket.id}">
-            </div>
-        </article>
-        `;
-        QRCode.toCanvas(
-            document.querySelector(`#qr-${ticket.id}`),
-            ticket.code
-        );
-    });
-}
-
-
-
-
 //ENTRY WORDS
 // var words = document.getElementsByClassName('word');
 // var wordArray = [];
@@ -477,3 +328,149 @@ document.addEventListener("keydown", function(dashE) {
         window.location.href = "https://infinity-events.github.io/dashboard-vivid";
     }
 });
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    GoogleAuthProvider, 
+    signInWithPopup,
+    GithubAuthProvider
+//Update the below URL with the appropriate version if necessary.
+    } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAreXtr2VRoi9FrPR1PSNhrM1qfWyzpYqw",
+    authDomain: "sample-firebase-ai-app-be9db.firebaseapp.com",
+    projectId: "sample-firebase-ai-app-be9db",
+    storageBucket: "sample-firebase-ai-app-be9db.firebasestorage.app",
+    messagingSenderId: "301656458329",
+    appId: "1:301656458329:web:fbc1fd553ca2912b9c9d48"
+};
+
+        const signOutButton = document.getElementById("signOutButton");
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+        console.log("Firebase pronto:", window.auth);
+
+        const emailSpan = document.getElementById('userEmail');
+        const emailFromSession = sessionStorage.getItem('userEmail');
+
+        window.auth = auth; // Rende auth accessibile globalmente
+        console.log("AUTH GLOBALE:", window.auth);
+        window.db = db; // Rende db accessibile globalmente 
+        window.provider = new GoogleAuthProvider(); // Rende provider accessibile globalmente 
+        window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
+
+        const accountContainer = document.getElementById("account-container");
+
+        onAuthStateChanged(auth, (user)=>{
+            if(!accountContainer) return;
+            if(user){
+                accountContainer.innerHTML = `
+                <a href="authenticated.html" class="profile-icon">
+                    <img src="${user.photoURL}" class="profile-avatar"></a>
+                </a>
+                `;
+            } else {
+                accountContainer.innerHTML = `
+                <button id="signInBtn">
+                    Registrati
+                </button>
+                `;
+                document.getElementById("signInBtn")
+                ?.addEventListener("click",()=>{
+                    window.location.href="auth.html";
+                });
+            }
+        });
+
+
+//         if (emailFromSession) {
+//     emailSpan.textContent = emailFromSession;
+//     if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
+//   } else {
+//     // Fallback: se non trovi nulla, recupera via Auth+Firestore
+//     onAuthStateChanged(auth, async (user) => {
+//       if (user) {
+//         emailSpan.textContent = user.email || '';
+//         try {
+//           const udoc = await getDoc(doc(db, "users", user.uid));
+//           if (udoc.exists() && welcome) {
+//             welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
+//           }
+//         } catch (err) {
+//           console.error('Errore recupero doc in authenticated.html', err);
+//         }
+//       } else {
+//         // non loggato -> ritorna al login
+//         window.location.replace('index.html');
+//       }
+//     });
+//   }
+
+        const userSignOut = async() => {
+            await signOut(auth);
+            checkAuthState();
+        }
+
+        signOutButton.addEventListener('click', userSignOut);
+
+    const API_URL="https://infinity-eventos-api.onrender.com";
+    const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
+
+    window.loadMyTickets = async function(){
+    const user = window.auth.currentUser;
+    if(!user) return;
+    const token = await user.getIdToken();
+
+    const response = await fetch(
+        `${API_URL}/tickets/user/me`,
+        {
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        }
+    );
+
+    const tickets = await response.json();
+
+    const box=document.getElementById(
+        "my-ticket-list"
+    );
+
+    if(!box) return;
+    box.innerHTML="";
+
+    tickets.forEach(ticket=>{
+        box.innerHTML += `
+        <article class="ticket-card">
+            <div class="ticket-top">
+                <h3>${ticket.type}</h3>
+                <span class="price">
+                    €${ticket.price}
+                </span>
+            </div>
+
+            <p>
+            Codice:
+            ${ticket.code}
+            </p>
+
+            <div class="qr-container"
+            id="qr-${ticket.id}">
+            </div>
+        </article>
+        `;
+        QRCode.toCanvas(
+            document.querySelector(`#qr-${ticket.id}`),
+            ticket.code
+        );
+    });
+}
