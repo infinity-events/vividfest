@@ -24,6 +24,7 @@
 
         const signOutButton = document.getElementById("signOutButton");
         const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
         const emailSpan = document.getElementById('userEmail');
@@ -34,8 +35,6 @@
         window.db = db; // Rende db accessibile globalmente 
         window.provider = new GoogleAuthProvider(); // Rende provider accessibile globalmente 
         window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
-
-        const auth = getAuth(app);
 
         if (emailFromSession) {
     emailSpan.textContent = emailFromSession;
