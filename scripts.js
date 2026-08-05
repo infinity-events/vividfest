@@ -44,7 +44,7 @@
             if(!accountContainer) return;
             if(user){
                 accountContainer.innerHTML = `
-                <a href="profile.html" class="profile-icon">
+                <a href="authenticated.html" class="profile-icon">
                     <img src="img/profile.png" alt="Profilo">
                 </a>
                 `;
