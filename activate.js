@@ -1,4 +1,4 @@
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
 const auth = getAuth();
 
@@ -103,10 +103,7 @@ response.status
 
 const tickets = await response.json();
 
-console.log(
-"TICKET:",
-tickets
-);
+console.log("TICKET:",tickets);
 
 const box=document.getElementById(
 "my-ticket-list"
