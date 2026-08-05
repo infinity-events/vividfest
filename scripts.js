@@ -36,28 +36,28 @@
         window.provider = new GoogleAuthProvider(); // Rende provider accessibile globalmente 
         window.signInWithPopup = signInWithPopup; // Rende signIn accessibile globalmente 
 
-        if (emailFromSession) {
-    emailSpan.textContent = emailFromSession;
-    if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
-  } else {
-    // Fallback: se non trovi nulla, recupera via Auth+Firestore
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        emailSpan.textContent = user.email || '';
-        try {
-          const udoc = await getDoc(doc(db, "users", user.uid));
-          if (udoc.exists() && welcome) {
-            welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
-          }
-        } catch (err) {
-          console.error('Errore recupero doc in authenticated.html', err);
-        }
-      } else {
-        // non loggato -> ritorna al login
-        window.location.replace('index.html');
-      }
-    });
-  }
+//         if (emailFromSession) {
+//     emailSpan.textContent = emailFromSession;
+//     if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
+//   } else {
+//     // Fallback: se non trovi nulla, recupera via Auth+Firestore
+//     onAuthStateChanged(auth, async (user) => {
+//       if (user) {
+//         emailSpan.textContent = user.email || '';
+//         try {
+//           const udoc = await getDoc(doc(db, "users", user.uid));
+//           if (udoc.exists() && welcome) {
+//             welcome.innerText = `Buongiorno, ${udoc.data().name || ''}!`;
+//           }
+//         } catch (err) {
+//           console.error('Errore recupero doc in authenticated.html', err);
+//         }
+//       } else {
+//         // non loggato -> ritorna al login
+//         window.location.replace('index.html');
+//       }
+//     });
+//   }
 
         const userSignOut = async() => {
             await signOut(auth);
