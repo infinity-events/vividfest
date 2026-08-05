@@ -1702,6 +1702,56 @@ footer {
     cursor: pointer;
 }
 
+.profile-container{
+display:flex;
+min-height:100vh;
+background:#090909;
+}
+
+.profile-sidebar{
+width:260px;
+padding:30px;
+background:#111;
+}
+
+.profile-link,
+.logout{
+width:100%;
+margin:8px 0;
+padding:15px;
+border-radius:15px;
+border:none;
+background:#222;
+color:white;
+text-align:left;
+cursor:pointer;
+}
+
+.profile-link.active{
+background:#ff77c0;
+}
+
+.profile-content{
+flex:1;
+padding:40px;
+}
+
+.profile-page{
+display:none;
+}
+
+.profile-page.active{
+display:block;
+}
+
+.profile-card{
+background:#ffffff20;
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:30px;
+color:white;
+}
+
 .notification{
     width: 346px;
     padding: 20px;
