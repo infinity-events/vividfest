@@ -218,7 +218,7 @@ const firebaseConfig = {
             if(user){
                 accountContainer.innerHTML = `
                 <a href="authenticated.html" class="profile-icon">
-                    <i class="fa-regular fa-circle-user"></i>
+                    <img src="${user.photoURL}" class="profile-avatar"></a>
                 </a>
                 `;
             } else {
