@@ -230,10 +230,16 @@ faqItems.forEach(item => {
 
 // Responsive table for the schedule section
 const table = document.querySelector('table');
-const tableWrapper = document.createElement('div');
-tableWrapper.classList.add('table-wrapper');
-table.parentNode.insertBefore(tableWrapper, table);
-tableWrapper.appendChild(table);
+
+if(table){
+    const tableWrapper = document.createElement('div');
+    tableWrapper.classList.add('table-wrapper');
+    table.parentNode.insertBefore(
+        tableWrapper,
+        table
+    );
+    tableWrapper.appendChild(table);
+}
 
 // Adjust FAQ answer display on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -428,12 +434,16 @@ const firebaseConfig = {
     const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
 
 async function loadMyTickets(){
+    console.log("CARICAMENTO TICKET");
     const user = window.auth.currentUser;
+    console.log("USER:", user);
     if(!user){
+        console.log("NESSUN UTENTE");
         return;
     }
 
     const token = await user.getIdToken();
+    console.log("TOKEN:", token);
 
     const response = await fetch(
     "https://infinity-eventos-api.onrender.com/tickets/user/me",
@@ -443,8 +453,11 @@ async function loadMyTickets(){
         }
     }
     );
+    console.log("STATUS API:", response.status);
 
     const tickets = await response.json();
+    console.log("TICKET RICEVUTI:", tickets);
+    
     const container =
     document.getElementById("my-ticket-list");
 
