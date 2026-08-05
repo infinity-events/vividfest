@@ -205,62 +205,6 @@
 const API_URL=
 "https://infinity-eventos-api.onrender.com";
 
-
-async function loadMyTickets(){
-    const user = window.auth.currentUser;
-    if(!user){
-    return;
-    }
-    const token =
-    await user.getIdToken();
-    const response =
-    await fetch(
-    `${API_URL}/tickets/user/me`,
-    {
-    headers:{
-    Authorization:
-    `Bearer ${token}`
-    }
-    }
-    );
-
-    const tickets =
-    await response.json();
-
-    const container =
-    document.getElementById(
-    "my-ticket-list"
-    );
-
-    container.innerHTML="";
-
-    tickets.forEach(ticket=>{
-        container.innerHTML += `
-        <article class="ticket-card">
-            <div class="ticket-top">
-                <h3>
-                ${ticket.type}
-                </h3>
-                <span class="price">
-                €${ticket.price}
-                </span>
-            </div>
-            <p>
-            Codice:
-            <b>${ticket.code}</b>
-            </p>
-            <div id="qr-${ticket.id}">
-            </div>
-        </article>
-        `;
-
-        QRCode.toCanvas(
-        document.getElementById(`qr-${ticket.id}`),
-        ticket.code
-        );
-    });
-}
-
 onAuthStateChanged(auth,(user)=>{
 
 if(user){

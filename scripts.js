@@ -329,6 +329,8 @@ document.addEventListener("keydown", function(dashE) {
     }
 });
 
+
+// FIREBASE
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import {
     getAuth,
@@ -473,4 +475,54 @@ const firebaseConfig = {
             ticket.code
         );
     });
+}
+
+//TICKETS
+window.loadMyTickets = async function(){
+const user = window.auth.currentUser;
+if(!user){
+    return;
+}
+const token = await user.getIdToken();
+const response = await fetch(
+"https://infinity-eventos-api.onrender.com/tickets/user/me",
+{
+headers:{
+Authorization:`Bearer ${token}`
+}
+}
+);
+
+const tickets = await response.json();
+
+const box=document.getElementById(
+"my-ticket-list"
+);
+if(!box)return;
+
+box.innerHTML="";
+
+tickets.forEach(ticket=>{
+box.innerHTML+=`
+<article class="ticket-card">
+    <div class="ticket-top">
+        <h3>${ticket.type}</h3>
+        <span class="price">
+        €${ticket.price}
+        </span>
+    </div>
+    <p>
+    Codice:
+    <b>${ticket.code}</b>
+    </p>
+    <div id="qr-${ticket.id}">
+    </div>
+</article>
+`;
+
+QRCode.toCanvas(
+document.getElementById(`qr-${ticket.id}`),
+ticket.code
+);
+});
 }
