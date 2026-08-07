@@ -213,9 +213,9 @@ document
             `Bearer ${token}`
         },
         body:JSON.stringify({
-            firstName: profileFirstName.value,
-            lastName: profileLastName.value,
-            phone: profilePhone.value
+            firstName: document.getElementById("userName").value,
+            lastName: document.getElementById("userSurname").value,
+            phone: document.getElementById("userPhone").value
         })
     });
     alert("Profilo aggiornato");
