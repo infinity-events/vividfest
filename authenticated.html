@@ -103,11 +103,34 @@
     </section>
 
     <section id="page-account" class="profile-page">
-        <div class="profile-card">
-            <h2>Il mio profilo</h2>
-            <p>Email:<span id="userEmail"></span></p>
-            <p>Nome:<span id="profileName"></span></p>
+        <div class="profile-card account-card">
+            <h1>Il mio profilo</h1>
+            <div class="profile-grid">
+                <div class="input nameField">
+                    <input id="profileFirstName" placeholder=" " type="text">
+                    <label>Nome</label>
+                </div>
+                <div class="input nameField">
+                    <input id="profileLastName" placeholder=" " type="text">
+                    <label>Cognome</label>
+                </div>
+                <div class="input nameField">
+                    <input id="profileEmail" placeholder=" "type="email">
+                    <label>Email</label>
+                </div>
+                <div class="input nameField">
+                    <input id="profilePhone" placeholder=" " type="text">
+                    <label>Telefono</label>
+                </div>
+            </div>
+            <button id="saveProfile">Salva modifiche</button>
+                <div class="danger-zone">
+                    <h3>Zona pericolosa</h3>
+                    <p>Eliminando l'account perderai biglietti,braccialetti e tutti i dati associati.</p>
+                    <button id="deleteAccount">Elimina account</button>
+                </div>
         </div>
+
     </section>
 
     <section id="page-faq" class="profile-page">

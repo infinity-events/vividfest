@@ -1971,6 +1971,61 @@ color:#bbb;
     font-size:4rem;
 }
 
+.account-card{
+    max-width:900px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:30px;
+}
+
+#saveProfile{
+    margin-top:25px;
+    width:100%;
+    height:45px;
+    border:none;
+    border-radius:30px;
+    background:#ff77c0;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+.danger-zone{
+    margin-top:50px;
+    padding:25px;
+    border-radius:20px;
+    background:
+    rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+}
+
+.danger-zone h3{
+    color:#ff4d4d;
+}
+
+#deleteAccount{
+    margin-top:20px;
+    width:100%;
+    height:45px;
+    border-radius:30px;
+    border:none;
+    background:#ff3333;
+    color:white;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+.profile-grid{
+grid-template-columns:1fr;
+}
+
+}
+
 .notification{
     width: 346px;
     padding: 20px;
@@ -2303,5 +2358,58 @@ color:#bbb;
 
     .contact a{
         color: #f5f2ff;
+    }
+
+    .profile-container{
+        color: #1f1a33;
+    }
+
+    .profile-sidebar img{
+        filter: invert(1);
+    }
+
+    .profile-sidebar{
+        background: #1f1a33;
+    }
+
+    .profile-sidebar button{
+        background: #1f1a33;
+        color: white;
+    }
+
+    .profile-sidebar button:hover{
+        background:#3d3657;
+    }
+
+    .profile-sidebar button:active{
+        background:#2d2740;
+    }
+
+    .profile-link.active{
+        background:#2d2740;
+    }
+
+    .profile-card{
+        padding: 20px;
+    }
+
+    .profile-card p, .form p, .profile-page p{
+        color: #bdb4d6;
+    }
+
+    .faq-item img{
+        filter: invert(1);
+    }
+
+    .ticket{
+        background:#2d2740;
+    }
+
+    .ticket:hover{
+        border-color:#cd639b;
+    }
+
+    .ticket-info{
+        color:#999999;
     }
 }

@@ -201,10 +201,52 @@ Riprova tra poco.
 const API_URL=
 "https://infinity-eventos-api.onrender.com";
 
+async function loadProfile(user){
+
+    const token=await user.getIdToken();
+    const response=await fetch("https://infinity-eventos-api.onrender.com/users/me",{
+        headers:{
+            Authorization:
+            `Bearer ${token}`
+        }
+    }
+    );
+
+    const data=await response.json();
+    document.getElementById("profileFirstName").value=data.firstName || "";
+    document.getElementById("profileLastName").value=data.lastName || "";
+    document.getElementById("profileEmail").value=data.email || "";
+    document.getElementById("profilePhone").value=data.phone || "";
+}
+
+document
+.getElementById("saveProfile")
+.addEventListener("click",async()=>{
+    const user=auth.currentUser;
+    const token=await user.getIdToken();
+    await fetch("https://infinity-eventos-api.onrender.com/users/update",{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:
+            `Bearer ${token}`
+        },
+        body:JSON.stringify({
+            firstName: profileFirstName.value,
+            lastName: profileLastName.value,
+            phone: profilePhone.value
+        })
+    });
+    alert("Profilo aggiornato");
+});
+
 onAuthStateChanged(auth, async (user)=>{
     if(!user){
         console.log("utente non loggato");
         return;
+    }
+    if(user){
+        loadProfile(user);
     }
     console.log("utente Firebase:", user.email);
     const token = await user.getIdToken();
