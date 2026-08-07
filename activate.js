@@ -198,41 +198,6 @@ Riprova tra poco.
 }
 }
 
-async function loadProfile(){
-    const user = window.auth.currentUser;
-
-    if(!user){
-        return;
-    }
-
-    const token = await user.getIdToken();
-    const response = await fetch(
-    "https://infinity-eventos-api.onrender.com/users/profile",
-        {
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        }
-    );
-
-    const profile = await response.json();
-
-    console.log("PROFILO UTENTE:",profile);
-
-    document.getElementById("userEmail").value =
-    profile.email || "";
-
-    document.getElementById("userName").value =
-    profile.firstName || "";
-
-    document.getElementById("userSurname").value =
-    profile.lastName || "";
-
-    document.getElementById("userPhone").value =
-    profile.phone || "";
-
-}
-
 const API_URL="https://infinity-eventos-api.onrender.com";
 
 document
@@ -267,5 +232,41 @@ onAuthStateChanged(auth, async (user)=>{
         await loadProfile();
     }
 
+    const token = await user.getIdToken();
     loadMyTickets(token);
 });
+
+async function loadProfile(){
+    const user = window.auth.currentUser;
+
+    if(!user){
+        return;
+    }
+
+    const token = await user.getIdToken();
+    const response = await fetch(
+    "https://infinity-eventos-api.onrender.com/users/profile",
+        {
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        }
+    );
+
+    const profile = await response.json();
+
+    console.log("PROFILO UTENTE:",profile);
+
+    document.getElementById("userEmail").value =
+    profile.email || "";
+
+    document.getElementById("userName").value =
+    profile.firstName || "";
+
+    document.getElementById("userSurname").value =
+    profile.lastName || "";
+
+    document.getElementById("userPhone").value =
+    profile.phone || "";
+
+}
