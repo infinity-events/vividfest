@@ -325,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (signInBtn) {
         signInBtn.addEventListener('click', userSignInHome);
     }
-    checkAuthState();
 });
 
 //DASHBOARD
@@ -431,7 +430,7 @@ const firebaseConfig = {
         signOutButton.addEventListener('click', userSignOut);
 
     const API_URL="https://infinity-eventos-api.onrender.com";
-    const FESTIVAL_ID="438e5467-925a-40cd-bfdb-1750795e35a2";
+    const FESTIVAL_ID="8dc5af96-3468-4989-b1c8-dc10055462b9";
 
 async function loadMyTickets(){
     console.log("CARICAMENTO TICKET");

@@ -198,26 +198,42 @@ Riprova tra poco.
 }
 }
 
-const API_URL=
-"https://infinity-eventos-api.onrender.com";
+async function loadProfile(){
+    const user = window.auth.currentUser;
 
-async function loadProfile(user){
-
-    const token=await user.getIdToken();
-    const response=await fetch("https://infinity-eventos-api.onrender.com/users/me",{
-        headers:{
-            Authorization:
-            `Bearer ${token}`
-        }
+    if(!user){
+        return;
     }
+
+    const token = await user.getIdToken();
+    const response = await fetch(
+    "https://infinity-eventos-api.onrender.com/users/profile",
+        {
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        }
     );
 
-    const data=await response.json();
-    document.getElementById("profileFirstName").value=data.firstName || "";
-    document.getElementById("profileLastName").value=data.lastName || "";
-    document.getElementById("profileEmail").value=data.email || "";
-    document.getElementById("profilePhone").value=data.phone || "";
+    const profile = await response.json();
+
+    console.log("PROFILO UTENTE:",profile);
+
+    document.getElementById("userEmail").value =
+    profile.email || "";
+
+    document.getElementById("userName").value =
+    profile.firstName || "";
+
+    document.getElementById("userSurname").value =
+    profile.lastName || "";
+
+    document.getElementById("userPhone").value =
+    profile.phone || "";
+
 }
+
+const API_URL="https://infinity-eventos-api.onrender.com";
 
 document
 .getElementById("saveProfile")
@@ -242,14 +258,14 @@ document
 
 onAuthStateChanged(auth, async (user)=>{
     if(!user){
-        console.log("utente non loggato");
+        window.location.href="index.html";
         return;
     }
+
     if(user){
-        loadProfile(user);
+        console.log("UTENTE LOGGATO:",user);
+        await loadProfile();
     }
-    console.log("utente Firebase:", user.email);
-    const token = await user.getIdToken();
-    console.log("TOKEN:", token);
+
     loadMyTickets(token);
 });

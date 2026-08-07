@@ -2128,6 +2128,11 @@ grid-template-columns:1fr;
         margin: 10px auto;
     }
 
+    #form{
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
     #signInBtn{
         width: 100px;
     }
