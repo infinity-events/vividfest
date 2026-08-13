@@ -55,6 +55,9 @@ async function activateWristband() {
                 },
                 body: JSON.stringify({
                     activationCode,
+                    // Il backend usa "code" per il codice del braccialetto.
+                    code: wristbandCode,
+                    // Manteniamo anche il nome descrittivo per compatibilita.
                     wristbandCode
                 })
             }
