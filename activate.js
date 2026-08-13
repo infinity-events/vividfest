@@ -1,19 +1,17 @@
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-
-const auth = getAuth();
-
 async function activateWristband() {
     const input = document.getElementById("activationCode");
+    const wristbandInput = document.getElementById("wristbandCode");
     const button = document.getElementById("activateCodeButton");
 
-    const code = input.value.trim().toUpperCase();
+    const activationCode = input.value.trim().toUpperCase();
+    const wristbandCode = wristbandInput?.value.trim().toUpperCase();
 
-    if (!code) {
-        alert("Inserisci il codice del braccialetto.");
+    if (!activationCode || !wristbandCode) {
+        alert("Inserisci il codice di attivazione e il codice del braccialetto.");
         return;
     }
 
-    const user = window.auth.currentUser;
+    const user = window.auth?.currentUser;
 
     if (!user) {
         alert("Devi effettuare il login.");
@@ -28,9 +26,6 @@ async function activateWristband() {
         // Recupera il token Firebase
         const token = await user.getIdToken();
 
-        console.log("TOKEN:", token);
-        console.log("USER UID:", user.uid);
-
         const response = await fetch(
             "https://infinity-eventos-api.onrender.com/wristbands/activate",
             {
@@ -40,8 +35,8 @@ async function activateWristband() {
                     "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    // code: document.getElementById("wristbandCode").value,
-                    activationCode: document.getElementById("activationCode").value
+                    activationCode,
+                    wristbandCode
                 })
             }
         );
