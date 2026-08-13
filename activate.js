@@ -1,7 +1,14 @@
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
 async function activateWristband() {
     const input = document.getElementById("activationCode");
     const wristbandInput = document.getElementById("wristbandCode");
     const button = document.getElementById("activateCodeButton");
+
+    if (!input || !wristbandInput || !button) {
+        console.error("Campi di attivazione non trovati nel DOM.");
+        return;
+    }
 
     const activationCode = input.value.trim().toUpperCase();
     const wristbandCode = wristbandInput?.value.trim().toUpperCase();
@@ -11,7 +18,19 @@ async function activateWristband() {
         return;
     }
 
-    const user = window.auth?.currentUser;
+    const auth = window.auth;
+    let user = auth?.currentUser;
+
+    // Firebase può impiegare qualche istante a ripristinare la sessione.
+    if (!user && auth) {
+        user = await new Promise((resolve) => {
+            let unsubscribe;
+            unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+                unsubscribe();
+                resolve(currentUser);
+            });
+        });
+    }
 
     if (!user) {
         alert("Devi effettuare il login.");
@@ -41,10 +60,17 @@ async function activateWristband() {
             }
         );
 
-        const data = await response.json();
+        const responseText = await response.text();
+        let data = {};
+
+        try {
+            data = responseText ? JSON.parse(responseText) : {};
+        } catch {
+            data = { message: responseText };
+        }
 
         if (!response.ok) {
-            throw new Error(data.message || "Errore durante l'attivazione.");
+            throw new Error(data.message || data.error || "Errore durante l'attivazione.");
         }
 
         alert("🎉 Braccialetto attivato con successo!");
@@ -63,20 +89,10 @@ async function activateWristband() {
 document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("activateCodeButton")
-        .addEventListener("click", activateWristband);
+        ?.addEventListener("click", activateWristband);
 });
 
 console.log("activate.js caricato");
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM pronto");
-
-    const btn = document.getElementById("activateButton");
-    console.log(btn);
-
-    btn?.addEventListener("click", () => {
-        console.log("CLICK");
-    });
-});
 
 //TICKETS
 window.loadMyTickets = async function(token){
