@@ -361,6 +361,28 @@ header.active{
     color: #f175c3;
   }
 
+  #biglietti .ticket-availability {
+    margin-top: 8px;
+    min-height: 20px;
+    color: #8c6f83;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #biglietti .ticket-availability.sold-out {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #ffe1ec;
+    color: #c13d70;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  #biglietti .ticket-card.sold-out {
+    border-color: rgba(193, 61, 112, 0.22);
+  }
+
   #biglietti .buy-ticket-button {
     background: #f7a8d8;
     color: #fff;
@@ -369,6 +391,15 @@ header.active{
     padding: 10px 18px;
     font-weight: 700;
     cursor: pointer;
+  }
+
+  #biglietti .buy-ticket-button:disabled,
+  #biglietti .ticket-card.sold-out .buy-ticket-button {
+    background: #d8cbd2;
+    color: #fff;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
   }
 
   #biglietti .ticket-benefits {

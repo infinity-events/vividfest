@@ -467,8 +467,11 @@
     categories.forEach(category=>{
 
 
-    const available =
-    category.quantity-category.sold;
+    const quantity = Number(category.quantity) || 0;
+    const sold = Number(category.sold) || 0;
+    const available = Math.max(quantity - sold, 0);
+    const soldOut = available === 0;
+    const purchaseAction = soldOut ? 'disabled aria-disabled="true"' : `onclick="buyTicket('${category.id}')"`;
 
 
     window.buyTicket = async function(categoryId){
@@ -516,7 +519,7 @@
 
     container.innerHTML += `
 
-    <article class="ticket-card ${category.type==="VIP" ? "featured" : ""}">
+    <article class="ticket-card ${category.type==="VIP" ? "featured" : ""} ${soldOut ? "sold-out" : ""}">
 
     <div class="ticket-top">
 
@@ -526,6 +529,10 @@
     €${category.price}
     </span>
 
+    </div>
+
+    <div class="ticket-availability ${soldOut ? "sold-out" : "available"}">
+    ${soldOut ? "Esaurito" : available + " " + (available === 1 ? "posto disponibile" : "posti disponibili")}
     </div>
 
 
@@ -578,10 +585,10 @@
 
     <div class="ticket-button-container">
 
-    <button class="buy-ticket-button" onclick="buyTicket('${category.id}')">
+    <button class="buy-ticket-button" ${purchaseAction}>
 
     <span>
-    Acquista Ora
+    ${soldOut ? "Biglietti esauriti" : "Acquista Ora"}
     <img class="arrow-icon" src="img/arrow.png">
     </span>
 
