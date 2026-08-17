@@ -481,14 +481,13 @@ async function loadMyTickets(){
         Festival:
         ${ticket.festival.name}
         </p>
-        <div class="qr-container">
-            <canvas id="qr-${ticket.id}"></canvas>
+        <div class="qr-container" id="qr-${ticket.id}">
         </div>
     </article>
     `;
-    QRCode.toCanvas(
+    new QRCode(
     document.getElementById(`qr-${ticket.id}`),
-    ticket.code
+    {text:ticket.code,width:180,height:180}
     );
     });
 }
