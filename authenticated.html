@@ -91,11 +91,6 @@
             <label>Codice Attivazione</label>
         </div>
 
-        <div class="input nameField">
-            <input type="text" id="wristbandCode" placeholder=" " required>
-            <label>Codice Braccialetto</label>
-        </div>
-
         <button id="activateCodeButton">ATTIVA</button>
         </div>
     </section>
@@ -208,6 +203,7 @@
     };
 
         const signOutButton = document.getElementById("signOutButton");
+        const API_URL = "https://infinity-eventos-api.onrender.com";
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -217,13 +213,28 @@
         window.auth = auth; // Rende auth accessibile globalmente
         window.db = db; // Rende db accessibile globalmente 
 
+        async function verifyPendingCheckout(user) {
+            const sessionId = new URLSearchParams(window.location.search).get("session_id");
+            if (!user || !sessionId) return;
+            try {
+                const token = await user.getIdToken();
+                const response = await fetch(`${API_URL}/tickets/checkout/verify?session_id=${encodeURIComponent(sessionId)}`, { headers: { Authorization: `Bearer ${token}` } });
+                if (!response.ok) console.error("Verifica pagamento fallita:", await response.text());
+                else window.history.replaceState({}, document.title, "authenticated.html");
+            } catch (error) {
+                console.error("Verifica pagamento:", error);
+            }
+        }
+
+        onAuthStateChanged(auth, verifyPendingCheckout);
+
         if (emailFromSession) {
     emailSpan.textContent = emailFromSession;
     if (nameFromSession && welcome) welcome.innerText = `Buongiorno, ${nameFromSession}!`;
   } else {
     // Fallback: se non trovi nulla, recupera via Auth+Firestore
     onAuthStateChanged(auth, async (user) => {
-      if (user) {
+        if (user) {
         emailSpan.textContent = user.email || '';
         try {
           const udoc = await getDoc(doc(db, "users", user.uid));
