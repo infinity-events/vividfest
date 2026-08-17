@@ -1899,7 +1899,7 @@ border-left:1px dashed rgb(14, 13, 13);
 }
 
 .ticket-qr{
-background:rgb(4, 4, 4);
+border:1px solid #000;
 padding:10px;
 border-radius:15px;
 }
