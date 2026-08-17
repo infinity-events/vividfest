@@ -498,7 +498,7 @@
         }
         const token = await window.auth.currentUser.getIdToken();
         const response = await fetch(
-        `${API_URL}/tickets/purchase/${categoryId}`,
+        `${API_URL}/tickets/checkout/${categoryId}`,
         {
         method:"POST",
         headers:{
@@ -510,10 +510,12 @@
 
         const ticket = await response.json();
 
+        if(!response.ok || !ticket.url){
+            throw new Error(ticket.message || "Impossibile aprire il pagamento");
+        }
+
         console.log(ticket);
-        localStorage.setItem("ticketId", ticket.id);
-        window.location.href = "authenticated.html";
-        loadMyTickets();
+        window.location.href = ticket.url;
 
     }
 
