@@ -430,7 +430,7 @@ const firebaseConfig = {
         signOutButton.addEventListener('click', userSignOut);
 
     const API_URL="https://infinity-eventos-api.onrender.com";
-    const FESTIVAL_ID="8dc5af96-3468-4989-b1c8-dc10055462b9";
+    const FESTIVAL_ID="8680b3bb-d661-4759-b918-96918eb3f6bc";
 
 async function loadMyTickets(){
     console.log("CARICAMENTO TICKET");
